@@ -1,26 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+import HomePage from "./components/HomePage/HomePage";
+import EventsPage from "./components/EventsPage/EventsPage";
+import TicketsPage from "./components/TicketsPage/TicketsPage";
+import AdminPage from "./components/AdminPage/AdminPage";
+import EventForm from "./components/EventForm/EventForm.jsx";
+import Footer from "./components/Footer/Footer";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar />
+          <main>
+            <Switch>
+              <Route path="/home" component={HomePage} />
+              <Route path="/events" component={EventsPage} />
+              <Route path="/tickets" component={TicketsPage} />
+              <Route path="/admin" component={AdminPage} />
+              <Route
+                path="/musician/new"
+                render={props => <EventForm {...props} returnPath="/admin" />}
+              />
+              <Route
+                path="/musicians/:id"
+                render={props => <EventForm {...props} returnPath="/admin" />}
+              />
+              <Redirect from="/" to="/home" />
+            </Switch>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }
