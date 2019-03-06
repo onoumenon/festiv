@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-
+import React from "react";
 import Header from "../Header/Header";
+import MusiciansTable from "./../MusiciansTable/MusiciansTable";
+import { getHeaderInfo } from "./../../services/headerService";
 
-class HomePage extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-      </div>
-    );
-  }
+function HomePage() {
+  const headerInfo = getHeaderInfo("home");
+
+  return (
+    <div>
+      <Header headerInfo={headerInfo} />
+      <MusiciansTable />
+    </div>
+  );
 }
 
 export default HomePage;

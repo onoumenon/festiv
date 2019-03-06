@@ -1,22 +1,35 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function NavBar() {
   return (
     <nav>
-      <Link to="/">Festiv</Link>
+      <div
+        className="ui large top borderless fluid three item  menu"
+        id="navbarNavAltMarkup"
+      >
+        <div className="ui container">
+          <div className="item">
+            <Link className="ui button" to="/admin">
+              Admin Log in
+            </Link>
+          </div>
 
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <NavLink className="nav-item nav-link" to="/home">
-            Home
+          <NavLink className="item butler" to="/home">
+            <h2>FESTIV</h2>
           </NavLink>
-          <NavLink className="nav-item nav-link" to="/tickets">
-            Tickets
-          </NavLink>
-          <NavLink className="nav-item nav-link" to="/events">
-            Events
-          </NavLink>
+        </div>
+        <div className="ui container item">
+          <div className="item">
+            <NavLink className="ui button" to="/events">
+              LINE UP
+            </NavLink>
+          </div>
+          <div className="item">
+            <NavLink className="ui button" to="/tickets">
+              TICKETS
+            </NavLink>
+          </div>
         </div>
       </div>
     </nav>

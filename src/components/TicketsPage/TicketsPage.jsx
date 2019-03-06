@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-
+import React from "react";
 import Header from "../Header/Header";
+import { getHeaderInfo } from "./../../services/headerService";
 
-export class TicketsPage extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-      </div>
-    );
-  }
+export function TicketsPage() {
+  const headerInfo = getHeaderInfo("tickets");
+
+  return (
+    <div>
+      <Header headerInfo={headerInfo} />
+    </div>
+  );
 }
 
 export default TicketsPage;

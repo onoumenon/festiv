@@ -7,6 +7,7 @@ import TicketsPage from "./components/TicketsPage/TicketsPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import EventForm from "./components/EventForm/EventForm.jsx";
 import Footer from "./components/Footer/Footer";
+import Modal from "./components/Modal/Modal";
 
 class App extends Component {
   render() {
@@ -16,18 +17,22 @@ class App extends Component {
           <NavBar />
           <main>
             <Switch>
-              <Route path="/home" component={HomePage} />
-              <Route path="/events" component={EventsPage} />
-              <Route path="/tickets" component={TicketsPage} />
-              <Route path="/admin" component={AdminPage} />
               <Route
-                path="/musician/new"
+                path="admin/musicians/:id"
+                render={props => <EventForm {...props} returnPath="/admin" />}
+              />
+              <Route
+                path="admin/musician/new"
                 render={props => <EventForm {...props} returnPath="/admin" />}
               />
               <Route
                 path="/musicians/:id"
-                render={props => <EventForm {...props} returnPath="/admin" />}
+                render={props => <Modal {...props} returnPath="/events" />}
               />
+              <Route path="/events" component={EventsPage} />
+              <Route path="/tickets" component={TicketsPage} />
+              <Route path="/admin" component={AdminPage} />
+              <Route path="/home" component={HomePage} />
               <Redirect from="/" to="/home" />
             </Switch>
           </main>
