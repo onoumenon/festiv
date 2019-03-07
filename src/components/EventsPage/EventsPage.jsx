@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Header/Header";
-import { getHeaderInfo } from "./../../services/headerService";
+import { getHeaderInfo } from "./../../services/adminService";
 import MusiciansTable from "./../MusiciansTable/MusiciansTable";
 
 export function EventsPage() {

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Header/Header";
 import MusiciansTable from "./../MusiciansTable/MusiciansTable";
-import { getHeaderInfo } from "./../../services/headerService";
+import { getHeaderInfo } from "./../../services/adminService";
 
 function HomePage() {
   const headerInfo = getHeaderInfo("home");

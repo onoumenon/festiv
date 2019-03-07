@@ -27,3 +27,11 @@ export function getHeaderInfos() {
 export function getHeaderInfo(id) {
   return headerInfos.find(header => header._id === id);
 }
+
+export function isAdmin(admin) {
+  if (admin) {
+    return admin;
+  } else {
+    return "home";
+  }
+}

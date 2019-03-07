@@ -1,0 +1,25 @@
+.Calendar {
+  text-align: center;
+  font-family: "Geomanist", Arial, Helvetica, sans-serif;
+  width: 70vw;
+}
+
+.Calendar-body {
+  padding: 20px;
+}
+
+.Calendar-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.Calendar-title {
+  font-family: Butler;
+  font-size: 2.5em;
+}
+
+.Calendar-intro {
+  font-size: large;
+}

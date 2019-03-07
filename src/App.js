@@ -18,15 +18,15 @@ class App extends Component {
           <main>
             <Switch>
               <Route
-                path="admin/musicians/:id"
+                path="/admin/musicians/new"
                 render={props => <EventForm {...props} returnPath="/admin" />}
               />
               <Route
-                path="admin/musician/new"
+                path="/admin/musicians/:name"
                 render={props => <EventForm {...props} returnPath="/admin" />}
               />
               <Route
-                path="/musicians/:id"
+                path="/musicians/:name"
                 render={props => <Modal {...props} returnPath="/events" />}
               />
               <Route path="/events" component={EventsPage} />
