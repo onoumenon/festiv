@@ -13,7 +13,6 @@ const formikEnhancer = withFormik({
     imageUrl: Yup.string().required("Image Link is required."),
     avatar: Yup.string().required("Image Link is required.")
   }),
-
   mapPropsToValues: ({ musician }) => ({
     ...musician
   }),
@@ -72,16 +71,15 @@ const TextInput = ({
     </div>
   );
 };
+
 const MyForm = props => {
   const {
     values,
     touched,
     errors,
-    dirty,
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
     isSubmitting
   } = props;
   return (
@@ -126,14 +124,7 @@ const MyForm = props => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <button
-        type="button"
-        className="outline"
-        onClick={handleReset}
-        disabled={!dirty || isSubmitting}
-      >
-        Reset
-      </button>
+
       <button type="submit" disabled={isSubmitting}>
         Submit
       </button>

@@ -3,7 +3,7 @@ import { getMusician, saveMusician } from "../../services/musicianService";
 
 import { FormikForm } from "./FormikForm";
 
-class RestaurantForm extends Component {
+class EventForm extends Component {
   state = {
     data: {}
   };
@@ -14,7 +14,7 @@ class RestaurantForm extends Component {
     saveMusician(musician);
   };
 
-  componentDidMount() {
+  componentWillMount() {
     const name = this.props.match ? this.props.match.params.name : null;
     const musicianFound = getMusician(name);
     if (!musicianFound) return;
@@ -22,18 +22,26 @@ class RestaurantForm extends Component {
 
     this.setState({ data: newMusician });
   }
+
   render() {
+    const { name, description, imageUrl, avatar } = this.state.data;
+
     return (
       <div>
         <h3>{this.props.match.params.name ? "Edit Act" : "New Act"}</h3>
         <FormikForm
           {...this.props}
           handleData={this.handleData}
-          musician={{ name: "", description: "", imageUrl: "", avatar: "" }}
+          musician={{
+            name,
+            description,
+            imageUrl,
+            avatar
+          }}
         />
       </div>
     );
   }
 }
 
-export default RestaurantForm;
+export default EventForm;

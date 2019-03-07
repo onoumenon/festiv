@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Musician({ details, admin, handleClick }) {
+function Musician({ details, admin }) {
   return (
     <div>
-      <Link to={`/${admin}/musician/${details.name}`} onClick={handleClick}>
+      <Link to={`/${admin}/musicians/${details.name}`}>
         <img src={details.avatar} alt={details.name} width="100px" />
       </Link>
       <div>
