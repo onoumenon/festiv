@@ -19,7 +19,7 @@ const formikEnhancer = withFormik({
   }),
   handleSubmit: (payload, { setSubmitting, props }) => {
     props.handleData(payload);
-    props.history.replace("/admin");
+    props.history.replace(props.returnPath);
 
     setSubmitting(false);
   },
