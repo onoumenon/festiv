@@ -88,7 +88,6 @@ export function saveMusician(musician) {
   let existing = musicians.find(mus => mus._id === musician._id);
   if (existing) {
     const merged = { ...existing, ...musician };
-
     musicians = musicians.filter(musician => musician._id !== existing._id);
     musicians.push(merged);
     return merged;

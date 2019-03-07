@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import cloneDeep from "lodash/cloneDeep";
 import Calendar from "react-big-calendar";
 
 import moment from "moment";
@@ -31,7 +30,7 @@ class EventCalendar extends Component {
   };
 
   showModal = event => {
-    const copy = cloneDeep(this.state.modal);
+    const copy = { ...this.state.modal };
     copy["title"] = event.title;
     copy["id"] = event._id;
     this.setState({ modal: copy });
@@ -57,7 +56,7 @@ class EventCalendar extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
-    const copy = cloneDeep(this.state.selectedOption);
+    const copy = { ...this.state.selectedOption };
     copy["title"] = input.value;
     this.setState({ selectedOption: copy });
   };
@@ -74,7 +73,7 @@ class EventCalendar extends Component {
   };
 
   onEventResize = (type, { event, start, end }) => {
-    const copy = cloneDeep(this.state.events);
+    const copy = { ...this.state.events };
     const eventFound = copy.find(
       stateEvent => stateEvent.title === event.title
     );
@@ -85,7 +84,7 @@ class EventCalendar extends Component {
   };
 
   onEventDrop = ({ event, start, end }) => {
-    const copy = cloneDeep(this.state.events);
+    const copy = { ...this.state.events };
     const eventFound = copy.find(
       stateEvent => stateEvent.title === event.title
     );
@@ -97,7 +96,7 @@ class EventCalendar extends Component {
 
   handleSelect = ({ start, end }) => {
     this.showModal({ title: "Select Musician" });
-    const copy = cloneDeep(this.state.selectedOption);
+    const copy = { ...this.state.selectedOption };
     copy.start = start;
     copy.end = end;
     this.setState({ selectedOption: copy });

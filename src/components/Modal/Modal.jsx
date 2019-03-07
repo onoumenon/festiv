@@ -32,7 +32,7 @@ function Modal({
             onClick={handleDelete}
             className="btn btn-primary btn-sm"
           >
-            Delete all events by this musician/ band
+            Delete all by this artist
           </button>
         </div>
       );

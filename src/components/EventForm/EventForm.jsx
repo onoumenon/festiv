@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import { getMusician } from "../../services/musicianService";
+import { getMusician, saveMusician } from "../../services/musicianService";
+
+import { FormikForm } from "./FormikForm";
 
 class RestaurantForm extends Component {
   state = {
     data: {}
+  };
+
+  handleData = data => {
+    this.setState({ data });
+    let musician = { ...this.state.data };
+    saveMusician(musician);
   };
 
   componentDidMount() {
@@ -18,6 +26,11 @@ class RestaurantForm extends Component {
     return (
       <div>
         <h3>{this.props.match.params.name ? "Edit Act" : "New Act"}</h3>
+        <FormikForm
+          {...this.props}
+          handleData={this.handleData}
+          musician={{ name: "", description: "", imageUrl: "", avatar: "" }}
+        />
       </div>
     );
   }
