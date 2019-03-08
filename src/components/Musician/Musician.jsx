@@ -22,7 +22,7 @@ export default class Musician extends React.Component {
   render() {
     const { details, admin } = this.props;
     return (
-      <div className="text-center" style={{ width: "15rem" }}>
+      <div className="text-center">
         <div className="avatar mx-auto">
           <Link to={`/${admin}/musicians/${details.name}`}>
             <img
