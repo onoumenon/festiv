@@ -4,20 +4,15 @@ import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
 import "./Musician.css";
 
 export default class Musician extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    popoverOpen: false
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      popoverOpen: false
-    };
-  }
-
-  toggle() {
+  toggle = () => {
     this.setState({
       popoverOpen: !this.state.popoverOpen
     });
-  }
+  };
 
   render() {
     const { details, admin } = this.props;
