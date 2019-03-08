@@ -13,14 +13,14 @@ function MusiciansTable({ admin, handleClick }) {
     if (admin) {
       return (
         <div>
-          <Card className="m-1 border-white">
+          <Card className="m-3  border-white">
+            <Link to="/admin/musicians/new">
+              <img src="images/musicians/add.png" alt="Add Musician" />
+            </Link>
             <CardTitle className="butler h2 mt-3">MUSICIANS</CardTitle>
 
             <hr color="secondary" />
             <CardBody className="d-flex flex-row justify-content-between">
-              <Link to="/admin/musicians/new">
-                <img src="images/musicians/add.png" alt="Add Musician" />
-              </Link>
               {allMuscians.map(musician => (
                 <div key={musician._id}>
                   <Musician

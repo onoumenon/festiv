@@ -1,7 +1,7 @@
 .Calendar {
   text-align: center;
+  margin: auto;
   font-family: "Geomanist", Arial, Helvetica, sans-serif;
-  width: 70vw;
 }
 
 .Calendar-body {

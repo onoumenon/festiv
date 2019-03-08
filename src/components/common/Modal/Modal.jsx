@@ -32,30 +32,35 @@ function Modal({
             onClick={handleDelete}
             className="btn btn-primary btn-sm"
           >
-            Delete all by this artist
+            Delete all events by this artist
           </button>
         </div>
       );
     }
     if (children.title === "Select Musician") {
       return (
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="selectMusician">Select Musician</label>
-            <select
-              onChange={handleChange}
-              className="form-control"
-              id="selectMusician"
-            >
-              {allMuscians.map(option => (
-                <option value={option.name} key={`${option._id}`}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button className="btn btn-primary btn-sm">Save</button>
-        </form>
+        <div>
+          <h3>Select Musician</h3>
+          <form
+            className="form-inline justify-content-center"
+            onSubmit={handleSubmit}
+          >
+            <div className="form-group ">
+              <select
+                onChange={handleChange}
+                className="form-control"
+                id="selectMusician"
+              >
+                {allMuscians.map(option => (
+                  <option value={option.name} key={`${option._id}`}>
+                    {option.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button className="btn btn-primary btn-sm">Save</button>
+          </form>
+        </div>
       );
     } else {
       return;
@@ -65,7 +70,7 @@ function Modal({
   return (
     <div className={modalClassName}>
       <section className="modal-main">
-        <section className="modal-content">
+        <section className="modal-content border-white text-center">
           {modalFunction(children)}
           <br />
         </section>

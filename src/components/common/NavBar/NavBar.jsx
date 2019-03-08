@@ -8,6 +8,7 @@ import {
   Nav,
   NavItem
 } from "reactstrap";
+import "./NavBar.css";
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -27,9 +28,30 @@ export default class NavBar extends React.Component {
     return (
       <nav>
         <Navbar color="light" light expand="md">
-          <NavbarBrand className="butler" href="/">
-            <h2>FESTIV</h2>
-          </NavbarBrand>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <form className="form-inline my-2 my-sm-0">
+                <button
+                  className="btn btn-outline-white shadow-none my-2 my-sm-0"
+                  type="submit"
+                  style={{ position: "relative", top: "4px" }}
+                >
+                  <h4>⌕</h4>
+                </button>
+                <input
+                  className="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </form>
+            </NavItem>
+          </Nav>
+          <Nav>
+            <NavbarBrand className="butler navlogo" href="/">
+              <h1> FESTIV</h1>
+            </NavbarBrand>
+          </Nav>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -37,9 +59,8 @@ export default class NavBar extends React.Component {
                 <NavLink className="btn btn-primary" to="/admin">
                   ADMIN
                 </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="btn btn-danger" to="/tickets">
+
+                <NavLink className="btn btn-danger ml-2" to="/tickets">
                   TICKETS
                 </NavLink>
               </NavItem>
