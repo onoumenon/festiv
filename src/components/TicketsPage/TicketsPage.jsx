@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../common/Header/Header";
 import { getHeaderInfo } from "./../../services/adminService";
 
 export function TicketsPage() {

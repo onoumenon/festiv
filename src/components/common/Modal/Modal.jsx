@@ -1,6 +1,6 @@
 import React from "react";
-import { getMusician, getMusicians } from "./../../services/musicianService";
-import Musician from "./../Musician/Musician";
+import { getMusician, getMusicians } from "./../../../services/musicianService";
+import Musician from "./../../Musician/Musician";
 import "./Modal.css";
 
 function Modal({

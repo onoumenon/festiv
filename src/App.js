@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
+import NavBar from "./components/common/NavBar/NavBar";
 import HomePage from "./components/HomePage/HomePage";
 import TicketsPage from "./components/TicketsPage/TicketsPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import MusicianForm from "./components/MusicianForm/MusicianForm";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/common/Footer/Footer";
 
 class App extends Component {
   render() {

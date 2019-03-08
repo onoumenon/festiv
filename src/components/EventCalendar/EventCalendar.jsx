@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import Calendar from "react-big-calendar";
-
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
 import "./EventCalendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
-import Modal from "../Modal/Modal";
+import Modal from "../common/Modal/Modal";
 import {
   getEvents,
   deleteEvent,
@@ -73,10 +71,8 @@ class EventCalendar extends Component {
   };
 
   onEventResize = (type, { event, start, end }) => {
-    const copy = { ...this.state.events };
-    const eventFound = copy.find(
-      stateEvent => stateEvent.title === event.title
-    );
+    const copy = [...this.state.events];
+    const eventFound = copy.find(stateEvent => stateEvent._id === event._id);
     eventFound.start = start;
     eventFound.end = end;
 
@@ -84,10 +80,10 @@ class EventCalendar extends Component {
   };
 
   onEventDrop = ({ event, start, end }) => {
-    const copy = { ...this.state.events };
-    const eventFound = copy.find(
-      stateEvent => stateEvent.title === event.title
-    );
+    const copy = [...this.state.events];
+
+    const eventFound = copy.find(stateEvent => stateEvent._id === event._id);
+
     eventFound.start = start;
     eventFound.end = end;
 
