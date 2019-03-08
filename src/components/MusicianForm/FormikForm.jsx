@@ -2,7 +2,7 @@ import React from "react";
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import classnames from "classnames";
-import "./EventForm.css";
+import "./FormikForm.css";
 
 const formikEnhancer = withFormik({
   validationSchema: Yup.object().shape({

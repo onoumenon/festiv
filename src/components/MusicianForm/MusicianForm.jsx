@@ -3,7 +3,7 @@ import { getMusician, saveMusician } from "../../services/musicianService";
 
 import { FormikForm } from "./FormikForm";
 
-class EventForm extends Component {
+class MusicianForm extends Component {
   state = {
     data: {}
   };
@@ -44,4 +44,4 @@ class EventForm extends Component {
   }
 }
 
-export default EventForm;
+export default MusicianForm;

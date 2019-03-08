@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./components/HomePage/HomePage";
 import TicketsPage from "./components/TicketsPage/TicketsPage";
 import AdminPage from "./components/AdminPage/AdminPage";
-import EventForm from "./components/EventForm/EventForm.jsx";
+import MusicianForm from "./components/MusicianForm/MusicianForm";
 import Footer from "./components/Footer/Footer";
 
 class App extends Component {
@@ -17,11 +17,15 @@ class App extends Component {
             <Switch>
               <Route
                 path="/admin/musicians/new"
-                render={props => <EventForm {...props} returnPath="/admin" />}
+                render={props => (
+                  <MusicianForm {...props} returnPath="/admin" />
+                )}
               />
               <Route
                 path="/admin/musicians/:name"
-                render={props => <EventForm {...props} returnPath="/admin" />}
+                render={props => (
+                  <MusicianForm {...props} returnPath="/admin" />
+                )}
               />
               <Route path="/tickets" component={TicketsPage} />
               <Route path="/admin" component={AdminPage} />

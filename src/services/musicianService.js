@@ -85,10 +85,10 @@ export function deleteMusician(id) {
 }
 
 export function saveMusician(musician) {
-  let existing = musicians.find(mus => mus._id === musician._id);
+  let existing = musicians.find(mus => mus.name === musician.name);
   if (existing) {
     const merged = { ...existing, ...musician };
-    musicians = musicians.filter(musician => musician._id !== existing._id);
+    musicians = musicians.filter(musician => musician.name !== existing.name);
     musicians.push(merged);
     return merged;
   } else {
