@@ -1,34 +1,52 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem
+} from "reactstrap";
 
-function NavBar() {
-  return (
-    <nav>
-      <div
-        className="ui large top borderless fluid three item  menu"
-        id="navbarNavAltMarkup"
-      >
-        <div className="ui container">
-          <NavLink className="item butler" to="/home">
+export default class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+    return (
+      <nav>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand className="butler" href="/">
             <h2>FESTIV</h2>
-          </NavLink>
-        </div>
-        <div className="ui container item">
-          <div className="item">
-            <Link className="ui button" to="/admin">
-              Admin Log in
-            </Link>
-          </div>
-
-          <div className="item">
-            <NavLink className="ui button" to="/tickets">
-              TICKETS
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink className="btn btn-primary" to="/admin">
+                  ADMIN
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="btn btn-danger" to="/tickets">
+                  TICKETS
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </nav>
+    );
+  }
 }
-
-export default NavBar;

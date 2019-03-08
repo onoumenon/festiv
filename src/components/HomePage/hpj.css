@@ -1,0 +1,8 @@
+.hpj-btn {
+  position: relative;
+  top: 430px;
+  right: 130px;
+}
+.modal-backdrop {
+  z-index: -1;
+}

@@ -1,16 +1,12 @@
 import React from "react";
 import Musician from "./../Musician/Musician";
-import { getEvents } from "./../../services/eventsService";
 import { getDays } from "./../../services/daysService";
 import { getMusician, getMusicians } from "../../services/musicianService";
 import { isAdmin } from "./../../services/adminService";
+import { filterDay } from "./../../services/daysService";
 
 function MusiciansTable({ admin, handleClick }) {
-  const events = getEvents();
   const allMuscians = getMusicians();
-  const filterDay = Day => {
-    return events.filter(event => event.start.getDay() === Day.getDay());
-  };
   const Days = getDays();
 
   function returnTable(admin) {
