@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Musician from "./../Musician/Musician";
 import { getMusician, getMusicians } from "../../services/musicianService";
 import { isAdmin } from "./../../services/adminService";
@@ -10,15 +11,29 @@ function MusiciansTable({ admin, handleClick }) {
 
   function returnTable(admin) {
     if (admin) {
-      return allMuscians.map(musician => (
-        <div key={musician._id}>
-          <Musician
-            details={getMusician(musician.name)}
-            admin={isAdmin(admin)}
-            handleClick={handleClick}
-          />
+      return (
+        <div>
+          <Card className="m-1 border-white">
+            <CardTitle className="butler h2 mt-3">MUSICIANS</CardTitle>
+
+            <hr color="secondary" />
+            <CardBody className="d-flex flex-row justify-content-between">
+              <Link to="/admin/musicians/new">
+                <img src="images/musicians/add.png" alt="Add Musician" />
+              </Link>
+              {allMuscians.map(musician => (
+                <div key={musician._id}>
+                  <Musician
+                    details={getMusician(musician.name)}
+                    admin={isAdmin(admin)}
+                    handleClick={handleClick}
+                  />
+                </div>
+              ))}
+            </CardBody>
+          </Card>
         </div>
-      ));
+      );
     } else {
       return (
         <div>
