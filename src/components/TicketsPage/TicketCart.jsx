@@ -18,10 +18,12 @@ import { getDay } from "./../../services/daysService";
 export function TicketCart(props) {
   const day = getDay(props.match.params.id);
 
+  sessionStorage.setItem("myData", `${day.date}`);
+
   return (
     <div className="container mx-auto text-center mt-3">
       <img
-        src="images/icons/step2.png"
+        src="https://i.imgur.com/iK6AUOt.png"
         width="300px"
         alt="Added to Cart"
         className="m-4"

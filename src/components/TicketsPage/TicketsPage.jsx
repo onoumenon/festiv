@@ -11,7 +11,7 @@ export function TicketsPage() {
     <div className="container text-center mx-auto">
       <Header headerInfo={headerInfo} />
       <img
-        src="images/icons/step1.png"
+        src="https://i.imgur.com/aa84uMR.png"
         width="300px"
         alt="Get Ticket"
         className="m-4"
