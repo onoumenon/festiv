@@ -3,10 +3,11 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/common/NavBar/NavBar";
 import HomePage from "./components/HomePage/HomePage";
 import TicketsPage from "./components/TicketsPage/TicketsPage";
-import TicketCart from "./components/TicketsPage/TicketCart";
 import AdminPage from "./components/AdminPage/AdminPage";
 import MusicianForm from "./components/MusicianForm/MusicianForm";
 import Footer from "./components/common/Footer/Footer";
+import TicketCart from "./components/TicketsPage/TicketCart";
+import TicketPaid from "./components/TicketsPage/TicketPaid";
 
 class App extends Component {
   render() {
@@ -28,10 +29,11 @@ class App extends Component {
                   <MusicianForm {...props} returnPath="/admin" />
                 )}
               />
+              <Route exact path="/tickets/paid" component={TicketPaid} />
               <Route
                 path="/tickets/:id"
                 render={props => (
-                  <TicketsPage {...props} returnPath="/tickets" />
+                  <TicketCart {...props} returnPath="/tickets/paid" />
                 )}
               />
               <Route path="/tickets" component={TicketsPage} />

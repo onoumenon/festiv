@@ -21,7 +21,7 @@ function TicketCard() {
         <div style={{ width: "5rem" }} className="mb-2">
           <img
             className="m-2"
-            src="icons/microphone.png"
+            src="images/icons/microphone.png"
             width="18px"
             alt="musicians"
           />
@@ -30,7 +30,12 @@ function TicketCard() {
           ))}
         </div>
         <div style={{ width: "5rem" }} className="ml-2">
-          <img className="m-2" src="icons/clock.png" width="18px" alt="time" />
+          <img
+            className="m-2"
+            src="images/icons/clock.png"
+            width="18px"
+            alt="time"
+          />
 
           <p>
             Door opens an hour early at
