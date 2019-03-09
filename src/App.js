@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/common/NavBar/NavBar";
 import HomePage from "./components/HomePage/HomePage";
 import TicketsPage from "./components/TicketsPage/TicketsPage";
+import TicketCart from "./components/TicketsPage/TicketCart";
 import AdminPage from "./components/AdminPage/AdminPage";
 import MusicianForm from "./components/MusicianForm/MusicianForm";
 import Footer from "./components/common/Footer/Footer";
@@ -25,6 +26,12 @@ class App extends Component {
                 path="/admin/musicians/:name"
                 render={props => (
                   <MusicianForm {...props} returnPath="/admin" />
+                )}
+              />
+              <Route
+                path="/tickets/:id"
+                render={props => (
+                  <TicketsPage {...props} returnPath="/tickets" />
                 )}
               />
               <Route path="/tickets" component={TicketsPage} />

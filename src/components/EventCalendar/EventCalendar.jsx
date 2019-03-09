@@ -44,7 +44,7 @@ class EventCalendar extends Component {
     event.preventDefault();
     const { title, start, end } = this.state.selectedOption;
     const _id = Date.now().toString();
-    const newEvent = { _id, start, end, title };
+    let newEvent = { _id, start, end, title };
     this.setState({
       events: [...this.state.events, newEvent]
     });

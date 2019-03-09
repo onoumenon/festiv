@@ -21,7 +21,15 @@ code {
   font-family: "Geomanist Book";
 }
 
-.butler {
+.butler,
+h2,
+h1,
+h3 {
   font-family: "Butler Medium", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-weight: 500;
 }

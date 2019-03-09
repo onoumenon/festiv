@@ -65,16 +65,31 @@ export function deleteEventByMusician(name) {
   return remainingEvents;
 }
 
-export function saveEvent(newEvent) {
-  let existing = events.find(eve => eve._id === newEvent._id);
+export function saveEvent(event) {
+  let existing = events.find(eve => eve._id === event._id);
 
   if (existing) {
-    const merged = { ...existing, ...newEvent };
+    const merged = { ...existing, ...event };
     events = events.filter(event => event._id !== existing._id);
     events.push(merged);
     return merged;
   } else {
+    const newEvent = {
+      _id: Date.now().toString(),
+      ...event
+    };
     events.push(newEvent);
     return newEvent;
   }
 }
+
+export function sortEvents(Events) {
+  return Events.sort(function(a, b) {
+    return new Date(a.start) - new Date(b.start);
+  });
+}
+
+export const sortedEvents = sortEvents(events);
+
+export const filterEvents = date =>
+  events.filter(event => event.start.toDateString() === date);

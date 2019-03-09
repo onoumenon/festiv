@@ -57,11 +57,11 @@ export default class NavBar extends React.Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink className="btn btn-primary" to="/admin">
-                  ADMIN
+                  Admin
                 </NavLink>
 
                 <NavLink className="btn btn-danger ml-2" to="/tickets">
-                  TICKETS
+                  Tickets
                 </NavLink>
               </NavItem>
             </Nav>

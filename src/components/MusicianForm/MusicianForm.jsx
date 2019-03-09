@@ -24,7 +24,7 @@ class MusicianForm extends Component {
   }
 
   render() {
-    const { name, description, imageUrl, avatar } = this.state.data;
+    const { name, description, avatar } = this.state.data;
 
     return (
       <div>
@@ -35,7 +35,6 @@ class MusicianForm extends Component {
           musician={{
             name,
             description,
-            imageUrl,
             avatar
           }}
         />

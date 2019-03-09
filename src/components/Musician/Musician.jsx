@@ -1,45 +1,59 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import {
+  Button,
+  UncontrolledPopover,
+  PopoverHeader,
+  PopoverBody
+} from "reactstrap";
 import "./Musician.css";
 
 export default class Musician extends React.Component {
-  state = {
-    popoverOpen: false
-  };
-
-  toggle = () => {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen
-    });
-  };
-
   render() {
     const { details, admin } = this.props;
-    return (
-      <div className="text-center">
-        <div className="avatar mx-auto">
+    const createLinkIfAdmin = admin => {
+      if (admin) {
+        return (
           <Link to={`/${admin}/musicians/${details.name}`}>
             <img
-              id="Popover"
+              id={`id${details._id}`}
               src={details.avatar}
               alt={details.name}
               className="rounded-circle img-fluid"
             />
           </Link>
-        </div>
+        );
+      }
+
+      return (
+        <Button
+          color="link"
+          className="shadow-none "
+          size="lg"
+          id={`id${details._id}`}
+        >
+          <img
+            src={details.avatar}
+            alt={details.name}
+            className="rounded-circle img-fluid "
+          />
+        </Button>
+      );
+    };
+    return (
+      <div className="text-center">
+        <div className="avatar mx-auto">{createLinkIfAdmin(admin)}</div>
         <div className="card-text">
           <p className="text-uppercase mb-4">{details.name}</p>
         </div>
-        <Popover
+        <UncontrolledPopover
+          trigger="hover"
           placement="bottom"
-          isOpen={this.state.popoverOpen}
-          target="Popover"
-          toggle={this.toggle}
+          target={`id${details._id}`}
         >
-          <PopoverHeader>Popover Title</PopoverHeader>
-          <PopoverBody>{details.description}</PopoverBody>
-        </Popover>
+          <PopoverHeader>{`${details.name}`}</PopoverHeader>
+          <PopoverBody>{`${details.description}`}</PopoverBody>
+        </UncontrolledPopover>
       </div>
     );
   }

@@ -12,6 +12,7 @@ import {
   ModalFooter
 } from "reactstrap";
 import "./hpj.css";
+import { getDates } from "./../../services/daysService";
 
 class HPJumbotron extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class HPJumbotron extends React.Component {
 
   render() {
     const { headerInfo } = this.props;
+    const dates = getDates();
 
     return (
       <div>
@@ -64,6 +66,11 @@ class HPJumbotron extends React.Component {
           }}
         >
           <div className="text-white">
+            <div className="hpj-text">
+              <h1>FESTIV</h1>
+              <h6>SINGAPORE MUSIC FESTIVAL</h6>
+              <h2>{`${dates[0].date}`}</h2>
+            </div>
             <div className="lead d-flex hpj-btn justify-content-end">
               <Form inline>
                 <FormGroup onSubmit={this.handleSubmit}>

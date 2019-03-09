@@ -3,6 +3,30 @@
   top: 430px;
   right: 130px;
 }
+
+.hpj-text {
+  position: absolute;
+  top: 25vh;
+  left: 27vw;
+  text-align: left;
+}
+
+.hpj-text > h1,
+h2 {
+  font-family: "Butler";
+  font-size: 3em;
+}
+
+.hpj-text > h1 {
+  font-size: 7em;
+}
+
+.hpj-text > h6 {
+  letter-spacing: 0.4em;
+  font-weight: 900;
+  line-height: 0px;
+}
+
 .modal-backdrop {
   z-index: -1;
 }

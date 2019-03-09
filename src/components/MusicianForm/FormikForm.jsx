@@ -10,7 +10,6 @@ const formikEnhancer = withFormik({
     description: Yup.string()
       .min(10, "C'mon, type a longer description!")
       .required("Description is required."),
-    imageUrl: Yup.string().required("Image Link is required."),
     avatar: Yup.string().required("Image Link is required.")
   }),
   mapPropsToValues: ({ musician }) => ({
@@ -101,16 +100,6 @@ const MyForm = props => {
         placeholder="Please write some info about the Musician/ Band."
         error={touched.description && errors.description}
         value={values.description}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <TextInput
-        id="imageUrl"
-        type="text"
-        label="Image Link"
-        placeholder="Please enter image URL"
-        error={touched.imageUrl && errors.imageUrl}
-        value={values.imageUrl}
         onChange={handleChange}
         onBlur={handleBlur}
       />
