@@ -93,6 +93,7 @@ const MyForm = props => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
+
       <TextInput
         id="description"
         type="text"
@@ -103,6 +104,7 @@ const MyForm = props => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
+
       <TextInput
         id="avatar"
         type="text"
@@ -116,6 +118,9 @@ const MyForm = props => {
 
       <button type="submit" disabled={isSubmitting}>
         Submit
+      </button>
+      <button onClick={props.handleDelete}>
+        {props.match.params.id ? "Delete" : "Cancel"}
       </button>
     </form>
   );

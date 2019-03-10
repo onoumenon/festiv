@@ -25,12 +25,18 @@ class App extends Component {
                 )}
               />
               <Route
-                path="/admin/musicians/:name"
+                path="/admin/musicians/:id"
                 render={props => (
                   <MusicianForm {...props} returnPath="/admin" />
                 )}
               />
-              <Route exact path="/tickets/paid" component={TicketPaid} />
+              <Route
+                exact
+                path="/tickets/paid"
+                render={props => (
+                  <TicketPaid {...props} returnPath="/tickets/paid" />
+                )}
+              />
               <Route
                 path="/tickets/buy"
                 render={props => (

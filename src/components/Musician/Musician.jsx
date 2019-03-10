@@ -6,10 +6,17 @@ import "./Musician.css";
 export default class Musician extends React.Component {
   render() {
     const { details, admin } = this.props;
+    const handleSession = () => {
+      const selectedMusician = JSON.stringify(details);
+      sessionStorage.setItem("musicianData", selectedMusician);
+    };
     const createLinkIfAdmin = admin => {
       if (admin) {
         return (
-          <Link to={`/${admin}/musicians/${details.name}`}>
+          <Link
+            to={`/${admin}/musicians/${details._id}`}
+            onClick={handleSession}
+          >
             <img
               id={`id${details._id}`}
               src={details.avatar}

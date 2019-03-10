@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { getMusician, saveMusician } from "../../services/musicianService";
+import {
+  getMusician,
+  saveMusician,
+  deleteMusician
+} from "../../services/musicianService";
 import { Card } from "reactstrap";
 import { FormikForm } from "./FormikForm";
 
@@ -8,36 +12,48 @@ class MusicianForm extends Component {
     data: {}
   };
 
+  handleDelete = () => {
+    deleteMusician(this.props.match.params.id);
+    sessionStorage.removeItem("musicianData");
+    this.props.history.replace(this.props.returnPath);
+  };
+
   handleData = data => {
     this.setState({ data });
     let musician = { ...this.state.data };
     saveMusician(musician);
+    sessionStorage.removeItem("musicianData");
   };
 
-  componentWillMount() {
-    const name = this.props.match ? this.props.match.params.name : null;
-    const musicianFound = getMusician(name);
+  componentDidMount() {
+    const id = this.props.match ? this.props.match.params.id : null;
+    const musicianFound = getMusician(id);
     if (!musicianFound) return;
     const newMusician = { ...musicianFound };
 
     this.setState({ data: newMusician });
   }
 
-  render() {
-    const { name, description, avatar } = this.state.data;
+  GetMusician = () => {
+    const foundMusician = JSON.parse(sessionStorage.getItem("musicianData"));
 
+    if (!foundMusician) {
+      return { _id: "", name: "", description: "", avatar: "" };
+    } else {
+      return foundMusician;
+    }
+  };
+
+  render() {
     return (
       <div className="container mt-5">
-        <h3>{this.props.match.params.name ? "Edit Act" : "New Act"}</h3>
+        <h3>{this.props.match.params.id ? "Edit Act" : "New Act"}</h3>
         <Card body>
           <FormikForm
             {...this.props}
             handleData={this.handleData}
-            musician={{
-              name,
-              description,
-              avatar
-            }}
+            handleDelete={this.handleDelete}
+            musician={this.GetMusician()}
           />
         </Card>
       </div>

@@ -61,8 +61,8 @@ export function getMusicians() {
   return musicians;
 }
 
-export function getMusician(name) {
-  const foundMusician = musicians.find(musician => musician.name === name);
+export function getMusician(id) {
+  const foundMusician = musicians.find(musician => musician._id === id);
   if (!foundMusician) {
     return;
   } else {
@@ -77,10 +77,10 @@ export function deleteMusician(id) {
 }
 
 export function saveMusician(musician) {
-  let existing = musicians.find(mus => mus.name === musician.name);
+  let existing = musicians.find(mus => mus._id === musician._id);
   if (existing) {
     const merged = { ...existing, ...musician };
-    musicians = musicians.filter(musician => musician.name !== existing.name);
+    musicians = musicians.filter(musician => musician._id !== existing._id);
     musicians.push(merged);
     return merged;
   } else {

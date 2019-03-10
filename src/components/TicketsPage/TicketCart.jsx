@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import {
   Card,
   CardBody,
   CardTitle,
   Col,
   Row,
-  Form,
   FormGroup,
   Label,
   Input,
@@ -14,11 +13,13 @@ import {
   UncontrolledTooltip,
   Table
 } from "reactstrap";
+
 import { getHeaderInfo } from "./../../services/adminService";
 import { getDaybyDaySubStr } from "./../../services/daysService";
 import Header from "./../common/Header/Header";
+import { TicketForm } from "./TicketForm";
 
-export function TicketCart() {
+export function TicketCart(props) {
   const cart = JSON.parse(sessionStorage.getItem("cartData"));
 
   const days = Object.keys(cart);
@@ -74,55 +75,7 @@ export function TicketCart() {
                 <hr width="300px" color="#8be5c3" />
               </CardTitle>
             </div>
-            <Form>
-              <FormGroup>
-                <Label for="email">Email Address (for e-ticket)</Label>
-                <Input type="email" name="email" id="email" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="name">Name on Card</Label>
-                <Input type="text" name="name" id="name" />
-              </FormGroup>
-              <Row form>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for="cardNumber">Credit Card Number</Label>
-                    <Input type="text" name="cardNumber" id="cardNumber" />
-                  </FormGroup>
-                </Col>
-                <Col md={2}>
-                  <FormGroup>
-                    <Label for="mm">MM</Label>
-                    <Input type="number" min="1" max="99" name="mm" id="mm" />
-                  </FormGroup>
-                </Col>
-                <Col md={2}>
-                  <FormGroup>
-                    <Label for="yy">YY</Label>
-                    <Input type="number" min="1" max="99" name="yy" id="yy" />
-                  </FormGroup>
-                </Col>
-                <Col md={2}>
-                  <FormGroup>
-                    <Label for="cvc">
-                      CVC
-                      <Badge id="cvcTip" color="light">
-                        ?
-                      </Badge>
-                    </Label>
-                    <Input type="text" name="cvc" id="cvc" />
-                    <UncontrolledTooltip placement="right" target="cvcTip">
-                      CVC (card verification code) is a three or four-digit
-                      number on the back of your card.
-                    </UncontrolledTooltip>
-                  </FormGroup>
-                </Col>
-              </Row>
-
-              <Link className="btn btn-info m-1" to="/tickets/paid">
-                Complete Payment
-              </Link>
-            </Form>
+            <TicketForm {...props} initial={{ email: "", name:"", creditCardNumber: "", expiryDate: "", CVC: "" }} />
           </CardBody>
         </Card>
       </div>
@@ -131,3 +84,77 @@ export function TicketCart() {
 }
 
 export default TicketCart;
+
+// export const ValidationSchemaExample = () => (
+//   <div>
+//     <Formik
+//       initialValues={{
+//         firstName: "",
+//         lastName: "",
+//         email: ""
+//       }}
+//       validationSchema={SignupSchema}
+//       onSubmit={values => {
+//         console.log(values);
+//       }}
+//     >
+//       {({ errors, touched }) => (
+//         <Form>
+//           <Field name="email" type="email"/>
+//           {errors.email && touched.email ? <div>{errors.email}</div> : null}
+//           <Field name="name" />
+//           {errors.name && touched.name ? <div>{errors.name}</div> : null}
+//           <Field name="creditCardNumber" />
+//           {errors.creditCardNumber && touched.creditCardNumber ? (
+//             <div>{errors.creditCardNumber}</div>
+//           ) : null}
+//           <Field name="expiryDate" />
+//           {errors.expiryDate && touched.expiryDate ? (
+//             <div>{errors.expiryDate}</div>
+//           ) : null}
+//           <Field name="CVC"  />
+//           {errors.CVC && touched.CVC ? <div>{errors.CVC}</div> : null}
+//           <button type="submit">Submit</button>
+//         </Form>
+//       )}
+//     </Formik>
+//   </div>
+// );
+
+// <FormGroup>
+//   <Label for="email">Email Address (for e-ticket)</Label>
+//   <Input type="email" name="email" id="email" />
+// </FormGroup>
+//   <FormGroup>
+//     <Label for="name">Name on Card</Label>
+//     <Input type="text" name="name" id="name" />
+//   </FormGroup>
+//   <Row form>
+//     <Col md={6}>
+//       <FormGroup>
+//         <Label for="cardNumber">Credit Card Number</Label>
+//         <Input type="text" name="cardNumber" id="cardNumber" />
+//       </FormGroup>
+//     </Col>
+//     <Col md={3}>
+//       <FormGroup>
+//         <Label for="mmyy">MMYY</Label>
+//         <Input type="number" max="9999" name="mmyy" id="mmyy" />
+//       </FormGroup>
+//     </Col>
+//     <Col md={2}>
+//       <FormGroup>
+//         <Label for="cvc">
+//           CVC
+//                       <Badge id="cvcTip" color="light">
+//             ?
+//                       </Badge>
+//         </Label>
+//         <Input type="text" name="cvc" id="cvc" />
+//         <UncontrolledTooltip placement="right" target="cvcTip">
+//           CVC (card verification code) is a three or four-digit
+//           number on the back of your card.
+//                     </UncontrolledTooltip>
+//       </FormGroup>
+//     </Col>
+//   </Row>
