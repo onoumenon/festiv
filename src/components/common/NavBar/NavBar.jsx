@@ -29,7 +29,7 @@ export default class NavBar extends React.Component {
       <nav>
         <Navbar color="light" light expand="md">
           <Nav className="ml-auto" navbar>
-            <NavItem>
+            <NavItem className="searchbar">
               <form className="form-inline my-2 my-sm-0">
                 <button
                   className="btn btn-outline-white shadow-none my-2 my-sm-0"

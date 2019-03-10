@@ -19,7 +19,7 @@ function Footer() {
               <div>
                 <img
                   className="logo-image mb-1"
-                  width="20px"
+                  style={{ width: "20px" }}
                   src="https://i.imgur.com/C0VSD6w.png"
                   alt="facebook"
                 />
@@ -27,7 +27,7 @@ function Footer() {
               <div>
                 <img
                   className="logo-image mb-1"
-                  width="20px"
+                  style={{ width: "20px" }}
                   src="https://i.imgur.com/PglmnVe.png"
                   alt="twitter"
                 />
@@ -35,7 +35,7 @@ function Footer() {
               <div>
                 <img
                   className="logo-image mb-1"
-                  width="20px"
+                  style={{ width: "20px" }}
                   src="https://i.imgur.com/ncMDWDO.png"
                   alt="youtube"
                 />
@@ -46,14 +46,14 @@ function Footer() {
                 <div className="content-overlay" />
                 <img
                   className="content-image"
-                  width="100px"
+                  style={{ width: "100px" }}
                   src="https://i.imgur.com/5VzlyP2.png"
                   alt="instagram"
                 />
                 <div className="content-details fadeIn-left">
                   <img
                     className="content-image"
-                    width="100px"
+                    style={{ width: "100px" }}
                     src="https://i.imgur.com/rirneyp.png"
                     alt="overlay"
                   />
@@ -65,14 +65,14 @@ function Footer() {
                 <div className="content-overlay" />
                 <img
                   className="content-image"
-                  width="100px"
+                  style={{ width: "100px" }}
                   src="https://i.imgur.com/Cmjd4Q1.png"
                   alt="instagram"
                 />
                 <div className="content-details fadeIn-left">
                   <img
                     className="content-image"
-                    width="100px"
+                    style={{ width: "100px" }}
                     src="https://i.imgur.com/rirneyp.png"
                     alt="overlay"
                   />
@@ -84,14 +84,14 @@ function Footer() {
                 <div className="content-overlay" />
                 <img
                   className="content-image"
-                  width="100px"
+                  style={{ width: "100px" }}
                   src="https://i.imgur.com/JkmPaCq.png"
                   alt="instagram"
                 />
                 <div className="content-details fadeIn-left">
                   <img
                     className="content-image"
-                    width="100px"
+                    style={{ width: "100px" }}
                     src="https://i.imgur.com/rirneyp.png"
                     alt="overlay"
                   />

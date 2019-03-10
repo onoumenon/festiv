@@ -4,3 +4,14 @@
   margin-left: -69px;
   top: 23px;
 }
+
+@media only screen and (max-width: 772px) {
+  .navlogo {
+    position: absolute;
+    left: 102px;
+    top: 23px;
+  }
+  .searchbar {
+    display: none;
+  }
+}

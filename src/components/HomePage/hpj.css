@@ -30,3 +30,40 @@ h2 {
 .modal-backdrop {
   z-index: -1;
 }
+
+@media only screen and (min-width: 1477px) {
+  .hpj-btn {
+    position: absolute;
+    top: 1vw;
+    right: 16vw;
+  }
+}
+@media only screen and (max-width: 1242px) {
+  .hpj-btn {
+    position: absolute;
+    top: 660px;
+    left: 20px;
+  }
+  .hpj-text {
+    position: absolute;
+    top: 20vw;
+    left: 30vw;
+    text-align: right;
+    text-shadow: 2px 2px 4px #000000;
+  }
+}
+
+@media only screen and (max-width: 578px) {
+  .hpj-text {
+    position: absolute;
+    top: 400px;
+    left: 10vw;
+    overflow-wrap: break-word;
+    text-align: center;
+    font-size: 70%;
+    text-shadow: 2px 2px 4px #000000;
+  }
+  .hpj-text > h6 {
+    letter-spacing: 2px;
+  }
+}

@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import { filterEvents, sortEvents } from "./../../services/eventsService";
 import { getDays } from "../../services/daysService";
+import "./TicketCard.css";
 
 export class TicketCard extends Component {
   state = {
@@ -85,19 +86,15 @@ export class TicketCard extends Component {
     const cart = this.state.cartItem;
     return (
       <React.Fragment>
-        <Navbar
-          color="faded"
-          light
-          style={{ width: "13rem", position: "absolute", left: "60px" }}
-        >
-          <NavbarBrand className="mr-auto" />
-          <Button onClick={this.toggleNavbar} className="mr-2">
+        <Navbar color="yellow" light className="cartNav">
+          <NavbarBrand className="p-0" />
+          <Button onClick={this.toggleNavbar}>
             <img src="images/icons/cart.png" width="30px" alt="cart" />
           </Button>
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <Table borderless className="text-center  shadow ">
+                <Table borderless className="text-center shadow ">
                   <thead>
                     <tr>
                       <th />

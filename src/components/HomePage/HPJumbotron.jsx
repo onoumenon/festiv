@@ -59,7 +59,7 @@ class HPJumbotron extends React.Component {
           className="bg-white mx-auto"
           style={{
             backgroundImage: `url(${headerInfo.imageURL})`,
-            backgroundSize: "contain",
+            backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             height: "700px",
             maxWidth: "100vw"
