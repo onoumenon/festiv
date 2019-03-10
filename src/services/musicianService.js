@@ -70,6 +70,15 @@ export function getMusician(id) {
   }
 }
 
+export function getMusicianByName(name) {
+  const foundMusician = musicians.find(musician => musician.name === name);
+  if (!foundMusician) {
+    return;
+  } else {
+    return foundMusician;
+  }
+}
+
 export function deleteMusician(id) {
   const found = musicians.find(musician => musician._id === id);
   musicians = musicians.filter(musician => musician._id !== id);

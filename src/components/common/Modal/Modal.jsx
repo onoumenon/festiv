@@ -1,5 +1,8 @@
 import React from "react";
-import { getMusician, getMusicians } from "./../../../services/musicianService";
+import {
+  getMusicianByName,
+  getMusicians
+} from "./../../../services/musicianService";
 import Musician from "./../../Musician/Musician";
 import "./Modal.css";
 
@@ -15,7 +18,7 @@ function Modal({
   const modalClassName = show ? "modal display-block" : "modal display-none";
 
   const modalFunction = children => {
-    const foundMusician = getMusician(children.title);
+    const foundMusician = getMusicianByName(children.title);
     if (foundMusician) {
       return (
         <div>

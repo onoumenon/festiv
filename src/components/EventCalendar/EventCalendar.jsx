@@ -5,12 +5,12 @@ import Calendar from "react-big-calendar";
 
 import {
   getEvents,
+  deleteEventByMusician,
   deleteEvent,
   saveEvent
 } from "../../services/eventsService";
 import Modal from "../common/Modal/Modal";
-import { getMusician } from "../../services/musicianService";
-import { deleteEventByMusician } from "./../../services/eventsService";
+import { getMusician, getMusicians } from "../../services/musicianService";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -21,11 +21,12 @@ Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 const DnDCalendar = withDragAndDrop(Calendar);
 
 class EventCalendar extends Component {
+  firstMusician = getMusicians()[0].name;
   state = {
     events: getEvents(),
     showModal: { show: false },
     modal: { title: "", id: "" },
-    selectedOption: { title: "The Observatory", start: "", end: "" }
+    selectedOption: { title: this.firstMusician, start: "", end: "" }
   };
 
   showModal = event => {

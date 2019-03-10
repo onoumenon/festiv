@@ -4,6 +4,7 @@ import {
   saveMusician,
   deleteMusician
 } from "../../services/musicianService";
+import { deleteEventByMusician } from "./../../services/eventsService";
 import { FormikForm } from "./FormikForm";
 import { Card } from "reactstrap";
 
@@ -13,7 +14,10 @@ class MusicianForm extends Component {
   };
 
   handleDelete = () => {
-    deleteMusician(this.props.match.params.id);
+    const id = this.props.match.params.id;
+    const musician = getMusician(id);
+    deleteMusician(id);
+    deleteEventByMusician(musician.name);
     sessionStorage.removeItem("musicianData");
     this.props.history.replace(this.props.returnPath);
   };
