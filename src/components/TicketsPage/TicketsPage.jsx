@@ -8,7 +8,10 @@ export function TicketsPage() {
   const headerInfo = getHeaderInfo("tickets");
 
   return (
-    <div className="container text-center mx-auto mt-5 mb-5">
+    <div
+      className="container text-center mx-auto mt-5 mb-5"
+      data-testid="tickets-page"
+    >
       <Header headerInfo={headerInfo} />
       <img
         src="https://i.imgur.com/aa84uMR.png"

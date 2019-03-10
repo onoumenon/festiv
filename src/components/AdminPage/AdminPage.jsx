@@ -6,7 +6,7 @@ export class AdminPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="text-center mx-auto w-75">
+        <div className="text-center mx-auto w-75" data-testid="admin-page">
           <MusiciansTable admin="admin" />
           <EventCalendar />
         </div>

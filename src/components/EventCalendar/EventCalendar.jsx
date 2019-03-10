@@ -10,7 +10,10 @@ import {
   saveEvent
 } from "../../services/eventsService";
 import Modal from "../common/Modal/Modal";
-import { getMusician, getMusicians } from "../../services/musicianService";
+import {
+  getMusicians,
+  getMusicianByName
+} from "../../services/musicianService";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -64,7 +67,7 @@ class EventCalendar extends Component {
   handleDelete = ({ currentTarget: input }) => {
     let events = [];
 
-    getMusician(input.value)
+    getMusicianByName(input.value)
       ? (events = deleteEventByMusician(input.value))
       : (events = deleteEvent(input.value));
 
