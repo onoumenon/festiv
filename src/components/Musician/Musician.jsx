@@ -1,11 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  UncontrolledPopover,
-  PopoverHeader,
-  PopoverBody
-} from "reactstrap";
+import { UncontrolledPopover, PopoverHeader, PopoverBody } from "reactstrap";
 import "./Musician.css";
 
 export default class Musician extends React.Component {
@@ -26,25 +21,20 @@ export default class Musician extends React.Component {
       }
 
       return (
-        <Button
-          color="link"
-          className="shadow-none "
-          size="lg"
-          id={`id${details._id}`}
-        >
+        <div color="link" className="shadow-none mb-1" id={`id${details._id}`}>
           <img
             src={details.avatar}
             alt={details.name}
             className="rounded-circle img-fluid "
           />
-        </Button>
+        </div>
       );
     };
     return (
       <div className="text-center">
-        <div className="avatar mx-auto">{createLinkIfAdmin(admin)}</div>
+        <div className="avatar mx-auto mb-1">{createLinkIfAdmin(admin)}</div>
         <div className="card-text">
-          <p className="text-uppercase mb-4">{details.name}</p>
+          <p className="text-uppercase mb-3">{details.name}</p>
         </div>
         <UncontrolledPopover
           trigger="hover"

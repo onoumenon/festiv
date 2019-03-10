@@ -14,6 +14,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <div className="clip-img" />
           <NavBar />
           <main>
             <Switch>

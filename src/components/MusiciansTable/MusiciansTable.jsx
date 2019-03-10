@@ -20,7 +20,7 @@ function MusiciansTable({ admin }) {
             <CardTitle className="butler h2 mt-3">MUSICIANS</CardTitle>
 
             <hr color="secondary" />
-            <CardBody className="d-flex flex-row justify-content-center ">
+            <CardBody className="d-flex align-content-center flex-wrap">
               {allMuscians.map(musician => (
                 <div key={musician._id}>
                   <Musician

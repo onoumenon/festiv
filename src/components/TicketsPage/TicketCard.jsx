@@ -19,7 +19,7 @@ import { getDays } from "../../services/daysService";
 export class TicketCard extends Component {
   state = {
     cartItem: { Fri: 0, Sat: 0, Sun: 0 },
-    collapsed: true
+    collapsed: false
   };
 
   toggleNavbar = () => {

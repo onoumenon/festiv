@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getMusician, saveMusician } from "../../services/musicianService";
-
+import { Card } from "reactstrap";
 import { FormikForm } from "./FormikForm";
 
 class MusicianForm extends Component {
@@ -29,15 +29,17 @@ class MusicianForm extends Component {
     return (
       <div className="container mt-5">
         <h3>{this.props.match.params.name ? "Edit Act" : "New Act"}</h3>
-        <FormikForm
-          {...this.props}
-          handleData={this.handleData}
-          musician={{
-            name,
-            description,
-            avatar
-          }}
-        />
+        <Card body>
+          <FormikForm
+            {...this.props}
+            handleData={this.handleData}
+            musician={{
+              name,
+              description,
+              avatar
+            }}
+          />
+        </Card>
       </div>
     );
   }

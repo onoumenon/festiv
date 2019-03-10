@@ -100,7 +100,7 @@ class EventCalendar extends Component {
 
   render() {
     return (
-      <div className="Calendar">
+      <div className="Calendar mb-5 p-2">
         <header className="Calendar-header">
           <h1 className="Calendar-title">Event Calendar</h1>
         </header>
