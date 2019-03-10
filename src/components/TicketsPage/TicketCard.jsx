@@ -20,7 +20,7 @@ import "./TicketCard.css";
 export class TicketCard extends Component {
   state = {
     cartItem: { Fri: 0, Sat: 0, Sun: 0 },
-    collapsed: false
+    collapsed: true
   };
 
   toggleNavbar = () => {

@@ -23,3 +23,15 @@ test("Nav links to Admin and Tickets navigate to the correct pages", () => {
   fireEvent.click(getByText(/tickets/i));
   expect(getByTestId("tickets-page")).toBeInTheDocument();
 });
+
+test("Navigates to edit/ new form when edit/new musician is clicked", () => {
+  const history = createMemoryHistory({ initialEntries: ["/admin"] });
+  const { getByText, getByTestId, queryByAltText } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+  fireEvent.click(getByText(/admin/i));
+  fireEvent.click(queryByAltText(/Add Musician/i));
+  expect(getByTestId("musician-form-page")).toBeInTheDocument();
+});

@@ -50,7 +50,7 @@ class MusicianForm extends Component {
 
   render() {
     return (
-      <div className="container mt-5">
+      <div className="container mt-5" data-testid="musician-form-page">
         <h3>{this.props.match.params.id ? "Edit Act" : "New Act"}</h3>
         <Card body>
           <FormikForm
