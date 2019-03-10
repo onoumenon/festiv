@@ -31,7 +31,7 @@ class App extends Component {
               />
               <Route exact path="/tickets/paid" component={TicketPaid} />
               <Route
-                path="/tickets/:id"
+                path="/tickets/buy"
                 render={props => (
                   <TicketCart {...props} returnPath="/tickets/paid" />
                 )}

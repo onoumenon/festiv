@@ -29,8 +29,20 @@ let allDaysPass = [
 export function getDays() {
   return days;
 }
+
 export function getDay(id) {
   const foundDay = days.find(day => day._id === id);
+  if (!foundDay) {
+    return;
+  } else {
+    return foundDay;
+  }
+}
+
+export function getDaybyDaySubStr(date, substrOption = 15) {
+  const foundDay = days.find(
+    day => day.date.substring(0, substrOption) === date
+  );
   if (!foundDay) {
     return;
   } else {

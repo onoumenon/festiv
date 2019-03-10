@@ -11,38 +11,69 @@ import {
   Label,
   Input,
   Badge,
-  UncontrolledTooltip
+  UncontrolledTooltip,
+  Table
 } from "reactstrap";
-import { getDay } from "./../../services/daysService";
 
-export function TicketCart(props) {
-  const day = getDay(props.match.params.id);
+import { getDaybyDaySubStr } from "./../../services/daysService";
 
-  sessionStorage.setItem("myData", `${day.date}`);
+export function TicketCart() {
+  const cart = JSON.parse(sessionStorage.getItem("cartData"));
+
+  const days = Object.keys(cart);
+  const itemsInCart = Object.values(cart);
+  const price = days.map(day => getDaybyDaySubStr(day, 3).price);
+  const pricePerDay = itemsInCart.map((day, i) => day * price[i]);
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const totalPrice = pricePerDay.reduce(reducer);
 
   return (
     <div className="container mx-auto text-center mt-3">
       <img
         src="https://i.imgur.com/iK6AUOt.png"
         width="300px"
-        alt="Added to Cart"
+        alt="Buy"
         className="m-4"
       />
       <div className="container d-flex justify-content-center">
-        <Card className="mb-5" style={{ width: "38rem" }}>
-          <CardBody>
-            <CardTitle tag="h3">{`${day.date}`}</CardTitle>
-            <CardTitle tag="h3">{`${day.price}`}SGD</CardTitle>
-
+        <Card className="mb-5  border-white shadow" style={{ width: "38rem" }}>
+          <CardBody style={{ width: "25rem" }} className="mx-auto">
+            <CardTitle tag="h2">Ticket Details</CardTitle>
+            <div className="mx-auto" style={{ width: "20rem" }}>
+              <Table borderless className="text-left">
+                <thead>
+                  <tr>
+                    <th />
+                    <th>{days[0]}</th>
+                    <th>{days[1]}</th>
+                    <th>{days[2]}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">#</th>
+                    <td>{itemsInCart[0]}</td>
+                    <td>{itemsInCart[1]}</td>
+                    <td>{itemsInCart[2]}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Price</th>
+                    <td>{pricePerDay[0]} SGD</td>
+                    <td>{pricePerDay[1]} SGD</td>
+                    <td>{pricePerDay[2]} SGD</td>
+                  </tr>
+                </tbody>
+              </Table>
+              <CardTitle tag="h3" className="mb-3">
+                <hr width="300px" color="#8be5c3" />
+                Total Price: {`${totalPrice}`}SGD
+                <hr width="300px" color="#8be5c3" />
+              </CardTitle>
+            </div>
             <Form>
               <FormGroup>
                 <Label for="email">Email Address (for e-ticket)</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Your email address here"
-                />
+                <Input type="email" name="email" id="email" />
               </FormGroup>
               <FormGroup>
                 <Label for="name">Name on Card</Label>
