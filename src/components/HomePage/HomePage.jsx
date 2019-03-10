@@ -1,6 +1,6 @@
 import React from "react";
-import MusiciansTable from "./../MusiciansTable/MusiciansTable";
 import { getHeaderInfo } from "./../../services/adminService";
+import MusiciansTable from "./../MusiciansTable/MusiciansTable";
 import HPJumbotron from "./HPJumbotron";
 
 function HomePage() {

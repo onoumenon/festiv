@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { uniq } from "lodash";
 import { Link } from "react-router-dom";
-import * as Yup from "yup";
 import {
   Card,
   CardBody,
@@ -23,13 +22,6 @@ export class TicketCard extends Component {
     collapsed: false
   };
 
-  schema = Yup.object().shape({
-    cart: Yup.number()
-      .positive()
-      .integer()
-      .required("Please add something to cart.")
-  });
-
   toggleNavbar = () => {
     this.setState({
       collapsed: !this.state.collapsed
@@ -43,10 +35,6 @@ export class TicketCard extends Component {
   };
 
   handleBuy = () => {
-    // const valid = this.schema.isValid(this.state.cartItem);
-    // console.log(valid);
-    // return valid.error;
-
     const cart = JSON.stringify(this.state.cartItem);
     sessionStorage.setItem("cartData", cart);
   };

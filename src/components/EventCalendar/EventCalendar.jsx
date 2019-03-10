@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-import Calendar from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+import Calendar from "react-big-calendar";
 
-import "./EventCalendar.css";
-import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import Modal from "../common/Modal/Modal";
 import {
   getEvents,
   deleteEvent,
   saveEvent
 } from "../../services/eventsService";
+import Modal from "../common/Modal/Modal";
 import { getMusician } from "../../services/musicianService";
 import { deleteEventByMusician } from "./../../services/eventsService";
+
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./EventCalendar.css";
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { withFormik } from "formik";
-import { FormGroup, Col, Row } from "reactstrap";
+import { FormGroup, Col, Row, Badge, UncontrolledTooltip } from "reactstrap";
 import * as Yup from "yup";
 import classnames from "classnames";
 import valid from "card-validator";
@@ -164,6 +164,14 @@ const MyForm = props => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <Badge id="cvcTip" color="light">
+                ?
+              </Badge>
+
+              <UncontrolledTooltip placement="right" target="cvcTip">
+                CVC (card verification code) is a three or four-digit number on
+                the back of your card.
+              </UncontrolledTooltip>
             </FormGroup>
           </Col>
         </Row>

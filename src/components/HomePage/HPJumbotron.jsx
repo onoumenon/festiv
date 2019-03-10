@@ -11,8 +11,8 @@ import {
   ModalBody,
   ModalFooter
 } from "reactstrap";
-import "./hpj.css";
 import { getDates } from "./../../services/daysService";
+import "./hpj.css";
 
 class HPJumbotron extends React.Component {
   constructor(props) {

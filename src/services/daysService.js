@@ -18,14 +18,6 @@ let days = [
   }
 ];
 
-let allDaysPass = [
-  {
-    _id: "3",
-    date: "June 14 - June 16 2019",
-    price: 120
-  }
-];
-
 export function getDays() {
   return days;
 }
@@ -37,25 +29,6 @@ export function getDay(id) {
   } else {
     return foundDay;
   }
-}
-
-export function getDaybyDaySubStr(date, substrOption = 15) {
-  const foundDay = days.find(
-    day => day.date.substring(0, substrOption) === date
-  );
-  if (!foundDay) {
-    return;
-  } else {
-    return foundDay;
-  }
-}
-
-export function getTicketOptions() {
-  return [...days, allDaysPass];
-}
-
-export function getDates() {
-  return allDaysPass;
 }
 
 const events = getEvents();

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Musician from "./../Musician/Musician";
+import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import { getMusician, getMusicians } from "../../services/musicianService";
 import { isAdmin } from "./../../services/adminService";
-import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import { filterDay } from "./../../services/daysService";
+import Musician from "./../Musician/Musician";
 
 function MusiciansTable({ admin }) {
   const allMuscians = getMusicians();

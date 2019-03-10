@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardTitle, Table } from "reactstrap";
-import Header from "./../common/Header/Header";
 import { getHeaderInfo } from "./../../services/adminService";
+import Header from "./../common/Header/Header";
 
 function TicketPaid() {
   const cart = JSON.parse(sessionStorage.getItem("cartData"));

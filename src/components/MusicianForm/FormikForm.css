@@ -6,6 +6,13 @@ a {
   color: #08c;
 }
 
+#cvcTip {
+  position: relative;
+  bottom: 89px;
+  right: 45px;
+  z-index: -99;
+}
+
 .text-input {
   padding: 0.5rem;
   font-size: 16px;

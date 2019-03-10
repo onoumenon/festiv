@@ -4,8 +4,8 @@ import {
   saveMusician,
   deleteMusician
 } from "../../services/musicianService";
-import { Card } from "reactstrap";
 import { FormikForm } from "./FormikForm";
+import { Card } from "reactstrap";
 
 class MusicianForm extends Component {
   state = {
