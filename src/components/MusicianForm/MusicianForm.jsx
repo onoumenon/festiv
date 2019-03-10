@@ -27,7 +27,7 @@ class MusicianForm extends Component {
     const { name, description, avatar } = this.state.data;
 
     return (
-      <div>
+      <div className="container mt-5">
         <h3>{this.props.match.params.name ? "Edit Act" : "New Act"}</h3>
         <FormikForm
           {...this.props}

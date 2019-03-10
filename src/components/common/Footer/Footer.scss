@@ -1,4 +1,4 @@
-$height-footer: 60px;
+$height-footer: 30px;
 
 html {
   min-height: 100%;
@@ -11,9 +11,49 @@ html {
     width: 100%;
     position: absolute;
     height: $height-footer;
-    background-color: #f5f5f5;
     .footer-block {
-      margin: 20px 0;
+      position: absolute;
+      bottom: 0px;
+    }
+  }
+
+  .logo-image {
+    filter: brightness(1.5);
+  }
+
+  .content {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+
+    .content-overlay {
+      -webkit-transition: all 0.2s ease-in-out 0s;
+      -moz-transition: all 0.2s ease-in-out 0s;
+      transition: all 0.2s ease-in-out 0s;
+      :hover {
+        opacity: 1;
+      }
+    }
+
+    .content-details {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      -webkit-transition: all 0.1s ease-in-out 0s;
+      -moz-transition: all 0.1s ease-in-out 0s;
+      transition: all 0.1s ease-in-out 0s;
+    }
+    :hover .content-details {
+      top: 50%;
+      left: 50%;
+      opacity: 1;
+    }
+    .fadeIn-left {
+      left: 20%;
     }
   }
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardTitle, Table } from "reactstrap";
+import Header from "./../common/Header/Header";
+import { getHeaderInfo } from "./../../services/adminService";
 
 function TicketPaid() {
   const cart = JSON.parse(sessionStorage.getItem("cartData"));
@@ -7,8 +9,11 @@ function TicketPaid() {
   const days = Object.keys(cart);
   const itemsInCart = Object.values(cart);
 
+  const headerInfo = getHeaderInfo("tickets");
+
   return (
-    <div className="container mx-auto text-center">
+    <div className="container mx-auto text-center mt-5 mb-5">
+      <Header headerInfo={headerInfo} />
       <img
         src="https://i.imgur.com/QGQgwbx.png"
         width="300px"

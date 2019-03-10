@@ -14,8 +14,9 @@ import {
   UncontrolledTooltip,
   Table
 } from "reactstrap";
-
+import { getHeaderInfo } from "./../../services/adminService";
 import { getDaybyDaySubStr } from "./../../services/daysService";
+import Header from "./../common/Header/Header";
 
 export function TicketCart() {
   const cart = JSON.parse(sessionStorage.getItem("cartData"));
@@ -27,8 +28,11 @@ export function TicketCart() {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const totalPrice = pricePerDay.reduce(reducer);
 
+  const headerInfo = getHeaderInfo("tickets");
+
   return (
-    <div className="container mx-auto text-center mt-3">
+    <div className="container mx-auto text-center mt-5 mb-5">
+      <Header headerInfo={headerInfo} />
       <img
         src="https://i.imgur.com/iK6AUOt.png"
         width="300px"
