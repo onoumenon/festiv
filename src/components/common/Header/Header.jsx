@@ -7,7 +7,8 @@ function Header({ headerInfo }) {
       <Jumbotron
         className="jumbotron w-85 p-4-5 m-5 mx-auto"
         style={{
-          backgroundImage: `url(${headerInfo.imageURL})`
+          backgroundImage: `url(${headerInfo.imageURL})`,
+          backgroundColor: "blue"
         }}
       >
         <div className="text-center text-white">

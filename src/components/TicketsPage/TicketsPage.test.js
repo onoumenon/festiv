@@ -4,8 +4,10 @@ import React from "react";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, fireEvent } from "react-testing-library";
-import TicketsPage from "./TicketsPage";
+import App from "./../../App";
 import * as TicketService from "../../services/daysService";
+import { TicketCart } from "./TicketCart";
+import TicketsPage from "./TicketsPage";
 
 beforeEach(() => {
   let sampleData = [
@@ -29,7 +31,7 @@ afterEach(() => {
 });
 
 test("displays tickets based on days on load", () => {
-  const history = createMemoryHistory({ initialEntries: ["/"] });
+  const history = createMemoryHistory({ initialEntries: ["/tickets"] });
   const { getAllByText } = render(
     <Router history={history}>
       <TicketsPage />
@@ -42,8 +44,8 @@ test("displays tickets based on days on load", () => {
 });
 
 test("displays cart amount based on number of clicks", () => {
-  const history = createMemoryHistory({ initialEntries: ["/"] });
-  const { getByText, getByAltText } = render(
+  const history = createMemoryHistory({ initialEntries: ["/tickets"] });
+  const { getByText } = render(
     <Router history={history}>
       <TicketsPage />
     </Router>
@@ -53,7 +55,21 @@ test("displays cart amount based on number of clicks", () => {
   fireEvent.click(FriCartBtn);
   fireEvent.click(FriCartBtn);
   fireEvent.click(FriCartBtn);
-  const CartToggle = getByAltText("cart");
-  fireEvent.click(CartToggle);
   expect(getByText("3")).toBeInTheDocument();
+});
+
+test("calculates correct price for tickets", () => {
+  const history = createMemoryHistory({ initialEntries: ["/"] });
+  const { getByText } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+  fireEvent.click(getByText(/tickets/i));
+  const FriCartBtn = getByText("✚ 1 to Cart");
+  fireEvent.click(FriCartBtn);
+  fireEvent.click(FriCartBtn);
+  const BuyBtn = getByText(/Buy Tickets/i);
+  fireEvent.click(BuyBtn);
+  expect(getByText(/80 SGD/i)).toBeInTheDocument();
 });
