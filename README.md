@@ -4,7 +4,7 @@ Festiv is a (Music Festival) Website built in React over a period of five days.
 
 ## Website
 
-- [Festiv](https://festiv.netlify.com/home) - Deployed on Netlify
+- [Festiv](https://festiv.netlify.com) - Deployed on Netlify
 
 ## Testing
 
