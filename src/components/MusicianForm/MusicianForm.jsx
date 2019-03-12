@@ -1,68 +1,38 @@
 import React, { Component } from "react";
-import {
-  getMusician,
-  saveMusician,
-  deleteMusician
-} from "../../services/musicianService";
-import { deleteEventByMusician } from "./../../services/eventsService";
 import { FormikForm } from "./FormikForm";
 import { Card } from "reactstrap";
-
+import { getMusician, deleteMusician } from "./../../services/musicianService";
+import { deleteEventByMusician } from "./../../services/eventsService";
 class MusicianForm extends Component {
-  state = {
-    data: {}
-  };
-
   handleDelete = () => {
-    const id = this.props.match.params.id;
-    const musician = getMusician(id);
-    deleteMusician(id);
-    deleteEventByMusician(musician.name);
-    sessionStorage.removeItem("musicianData");
-    this.props.history.replace(this.props.returnPath);
-  };
-
-  handleData = data => {
-    this.setState({ data });
-    let musician = { ...this.state.data };
-    saveMusician(musician);
-    sessionStorage.removeItem("musicianData");
-  };
-
-  componentDidMount() {
-    const id = this.props.match ? this.props.match.params.id : null;
-    const musicianFound = getMusician(id);
-    if (!musicianFound) return;
-    const newMusician = { ...musicianFound };
-
-    this.setState({ data: newMusician });
-  }
-
-  GetMusician = () => {
-    const foundMusician = JSON.parse(sessionStorage.getItem("musicianData"));
-
-    if (!foundMusician) {
-      return { _id: "", name: "", description: "", avatar: "" };
+    if (this.props.match.params.id) {
+      const id = this.props.match.params.id;
+      const musician = getMusician(id);
+      deleteMusician(id);
+      deleteEventByMusician(musician.name);
+      this.props.deleteStateData(id);
+      this.props.history.replace(this.props.returnPath);
     } else {
-      return foundMusician;
+      this.props.history.replace(this.props.returnPath);
     }
   };
 
   render() {
+    const { handleData, musicians, ...props } = this.props;
+
     return (
       <div className="container mt-5" data-testid="musician-form-page">
-        <h3>{this.props.match.params.id ? "Edit Act" : "New Act"}</h3>
+        <h3>{props.match.params.id ? "Edit Act" : "New Act"}</h3>
         <Card body>
           <FormikForm
-            {...this.props}
-            handleData={this.handleData}
+            {...props}
+            handleData={handleData}
             handleDelete={this.handleDelete}
-            musician={this.GetMusician()}
+            musician={getMusician(this.props.match.params.id)}
           />
         </Card>
       </div>
     );
   }
 }
-
 export default MusicianForm;

@@ -10,10 +10,7 @@ import {
   saveEvent
 } from "../../services/eventsService";
 import Modal from "../common/Modal/Modal";
-import {
-  getMusicians,
-  getMusicianByName
-} from "../../services/musicianService";
+import { getMusicianByName } from "../../services/musicianService";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -24,20 +21,41 @@ Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 const DnDCalendar = withDragAndDrop(Calendar);
 
 class EventCalendar extends Component {
-  firstMusician = getMusicians()[0].name;
   state = {
     events: getEvents(),
     showModal: { show: false },
     modal: { title: "", id: "" },
-    selectedOption: { title: this.firstMusician, start: "", end: "" }
+    selectedOption: { title: "", start: "", end: "" }
   };
+
+  firstMusician = musicians => {
+    try {
+      const firstMusician = musicians[0].name;
+      return firstMusician;
+    } catch (err) {
+      this.setState({
+        modal: {
+          title: "Please add musicians.",
+          id: "Click the '+' button to add musician."
+        }
+      });
+      this.setState({ show: true });
+    }
+  };
+
+  componentDidMount() {
+    const musicians = this.props.musicians;
+    const firstMusician = this.firstMusician(musicians);
+    const selectedOption = this.state.selectedOption;
+    selectedOption.title = firstMusician;
+    this.setState({ selectedOption });
+  }
 
   showModal = event => {
     const copy = { ...this.state.modal };
     copy["title"] = event.title;
     copy["id"] = event._id;
     this.setState({ modal: copy });
-
     this.setState({ show: true });
   };
 
@@ -96,14 +114,27 @@ class EventCalendar extends Component {
   };
 
   handleSelect = ({ start, end }) => {
-    this.showModal({ title: "Select Musician" });
     const copy = { ...this.state.selectedOption };
+
+    if (!copy.title) {
+      this.setState({
+        modal: {
+          title: "Please add musicians.",
+          id: "Click the '+' button to add musician."
+        }
+      });
+      this.setState({ show: true });
+      return;
+    }
+    this.showModal({ title: "Select Musician" });
     copy.start = start;
     copy.end = end;
     this.setState({ selectedOption: copy });
   };
 
   render() {
+    const minTime = new Date();
+    minTime.setHours(8, 30, 0);
     return (
       <div className="Calendar mb-5 p-2">
         <header className="Calendar-header">
@@ -115,6 +146,7 @@ class EventCalendar extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           handleDelete={this.handleDelete}
+          musicians={this.props.musicians}
           children={this.state.modal}
         />
         <DnDCalendar
@@ -124,6 +156,7 @@ class EventCalendar extends Component {
           defaultView={Calendar.Views.DAY}
           steps={24}
           timeslots={4}
+          min={minTime}
           scrollToTime={new Date("June 14, 2018")}
           defaultDate={new Date("June 14, 2019")}
           onSelectEvent={this.showModal}

@@ -6,7 +6,7 @@ import { getDaybyDaySubStr } from "./../../services/daysService";
 import Header from "./../common/Header/Header";
 import { TicketForm } from "./TicketForm";
 
-export function TicketCart(props) {
+export function TicketCart({ handlePayload, ...props }) {
   const cart = JSON.parse(sessionStorage.getItem("cartData"));
 
   const days = Object.keys(cart);
@@ -63,7 +63,7 @@ export function TicketCart(props) {
               </CardTitle>
             </div>
             <TicketForm
-              {...props}
+              handlePayload={handlePayload}
               initial={{
                 email: "",
                 name: "",
@@ -71,6 +71,7 @@ export function TicketCart(props) {
                 expiryDate: "",
                 CVC: ""
               }}
+              {...props}
             />
           </CardBody>
         </Card>

@@ -4,7 +4,7 @@ import { getHeaderInfo } from "./../../services/adminService";
 import TicketCard from "./TicketCard";
 import "./TicketPage.css";
 
-export function TicketsPage() {
+export function TicketsPage(props) {
   const headerInfo = getHeaderInfo("tickets");
 
   return (
@@ -20,7 +20,7 @@ export function TicketsPage() {
         className="m-4"
       />
       <div className="container d-flex justify-content-center">
-        <TicketCard />
+        <TicketCard props={props} />
       </div>
     </div>
   );

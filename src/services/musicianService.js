@@ -1,3 +1,6 @@
+import { filterEvents } from "./eventsService";
+import { uniq } from "lodash";
+
 let musicians = [
   {
     _id: "0",
@@ -57,8 +60,26 @@ let musicians = [
   }
 ];
 
-export function getMusicians() {
-  return musicians;
+export function getMusiciansNamesByDay(day) {
+  const foundEvents = filterEvents(day);
+  const musicianNames = [];
+  foundEvents.map(musician => musicianNames.push(musician.title));
+  const uniqueMusicians = uniq(musicianNames);
+  return uniqueMusicians;
+}
+
+export function getMusicians(day) {
+  if (!day) {
+    return musicians;
+  } else {
+    const musicianNames = getMusiciansNamesByDay(day);
+
+    const musiciansByDay = musicianNames.map(name =>
+      musicians.filter(musician => musician.name !== name)
+    );
+
+    return musiciansByDay;
+  }
 }
 
 export function getMusician(id) {
@@ -80,9 +101,9 @@ export function getMusicianByName(name) {
 }
 
 export function deleteMusician(id) {
-  const found = musicians.find(musician => musician._id === id);
-  musicians = musicians.filter(musician => musician._id !== id);
-  return found;
+  const remainingMusicians = musicians.filter(musician => musician._id !== id);
+  musicians = remainingMusicians;
+  return remainingMusicians;
 }
 
 export function saveMusician(musician) {

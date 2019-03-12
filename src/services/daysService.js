@@ -61,5 +61,17 @@ export function getDates() {
 const events = getEvents();
 
 export const filterDay = Day => {
-  return events.filter(event => event.start.getDay() === Day.getDay());
+  return events.filter(event => event.start.toDateString() === Day);
+};
+
+const regex = /\b((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)\b/gi;
+
+export const returnDayOfWeek = Day => {
+  const dayOfWeek = Day.match(regex);
+  return dayOfWeek;
+};
+
+export const returnDateOnly = Day => {
+  const dateOnly = Day.replace(regex, "");
+  return dateOnly;
 };

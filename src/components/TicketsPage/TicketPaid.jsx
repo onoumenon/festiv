@@ -3,7 +3,7 @@ import { Card, CardBody, CardTitle, Table } from "reactstrap";
 import { getHeaderInfo } from "./../../services/adminService";
 import Header from "./../common/Header/Header";
 
-function TicketPaid() {
+function TicketPaid({ user }) {
   const cart = JSON.parse(sessionStorage.getItem("cartData"));
 
   const days = Object.keys(cart);
@@ -34,6 +34,9 @@ function TicketPaid() {
               Here are your order details:
             </CardTitle>
             <p>ORDER ID: {Date.now().toString()}</p>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <h6>Your e-ticket will be sent to your email.</h6>
             <Table borderless className="text-left">
               <thead>
                 <tr>

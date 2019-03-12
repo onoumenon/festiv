@@ -37,9 +37,9 @@ const formikEnhancer = withFormik({
     ...initial
   }),
   handleSubmit: (payload, { setSubmitting, props }) => {
-    props.history.replace(props.returnPath);
-
     setSubmitting(false);
+    props.handlePayload(payload);
+    props.history.replace(props.returnPath);
   },
   displayName: "Payment Validation"
 });

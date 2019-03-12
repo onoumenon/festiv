@@ -3,13 +3,13 @@ import { getHeaderInfo } from "./../../services/adminService";
 import MusiciansTable from "./../MusiciansTable/MusiciansTable";
 import HPJumbotron from "./HPJumbotron";
 
-function HomePage() {
+function HomePage({ musicians }) {
   const headerInfo = getHeaderInfo("home");
 
   return (
     <div className="text-center">
       <HPJumbotron headerInfo={headerInfo} />
-      <MusiciansTable />
+      <MusiciansTable musicians={musicians} />
     </div>
   );
 }

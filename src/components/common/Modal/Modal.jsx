@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  getMusicianByName,
-  getMusicians
-} from "./../../../services/musicianService";
+import { getMusicianByName } from "./../../../services/musicianService";
 import Musician from "./../../Musician/Musician";
 import "./Modal.css";
 
@@ -12,9 +9,9 @@ function Modal({
   children,
   handleSubmit,
   handleChange,
-  handleDelete
+  handleDelete,
+  musicians
 }) {
-  const allMuscians = getMusicians();
   const modalClassName = show ? "modal display-block" : "modal display-none";
 
   const modalFunction = children => {
@@ -54,7 +51,7 @@ function Modal({
                 className="form-control"
                 id="selectMusician"
               >
-                {allMuscians.map(option => (
+                {musicians.map(option => (
                   <option value={option.name} key={`${option._id}`}>
                     {option.name}
                   </option>
@@ -66,7 +63,12 @@ function Modal({
         </div>
       );
     } else {
-      return;
+      return (
+        <div>
+          <h3>{children.title}</h3>
+          <p>{children.id}</p>
+        </div>
+      );
     }
   };
 

@@ -4,19 +4,16 @@ import { UncontrolledPopover, PopoverHeader, PopoverBody } from "reactstrap";
 import "./Musician.css";
 
 export default class Musician extends React.Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     const { details, admin } = this.props;
-    const handleSession = () => {
-      const selectedMusician = JSON.stringify(details);
-      sessionStorage.setItem("musicianData", selectedMusician);
-    };
+
     const createLinkIfAdmin = admin => {
       if (admin) {
         return (
-          <Link
-            to={`/${admin}/musicians/${details._id}`}
-            onClick={handleSession}
-          >
+          <Link to={`/${admin}/musicians/${details._id}`}>
             <img
               id={`id${details._id}`}
               src={details.avatar}
@@ -25,17 +22,21 @@ export default class Musician extends React.Component {
             />
           </Link>
         );
+      } else {
+        return (
+          <div
+            color="link"
+            className="shadow-none mb-1"
+            id={`id${details._id}`}
+          >
+            <img
+              src={details.avatar}
+              alt={details.name}
+              className="rounded-circle img-fluid "
+            />
+          </div>
+        );
       }
-
-      return (
-        <div color="link" className="shadow-none mb-1" id={`id${details._id}`}>
-          <img
-            src={details.avatar}
-            alt={details.name}
-            className="rounded-circle img-fluid "
-          />
-        </div>
-      );
     };
     return (
       <div className="text-center">

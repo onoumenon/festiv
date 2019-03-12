@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { uniq } from "lodash";
-import { Link } from "react-router-dom";
 import {
   Card,
   CardBody,
@@ -20,7 +19,8 @@ import "./TicketCard.css";
 export class TicketCard extends Component {
   state = {
     cartItem: { Fri: 0, Sat: 0, Sun: 0 },
-    collapsed: true
+    collapsed: true,
+    isCartEmpty: true
   };
 
   toggleNavbar = () => {
@@ -29,57 +29,103 @@ export class TicketCard extends Component {
     });
   };
 
+  isCartEmpty = () => {
+    const cart = JSON.parse(sessionStorage.getItem("cartData"));
+    try {
+      const itemsInCart = Object.values(cart);
+      const totalItems = itemsInCart.reduce((a, b) => a + b, 0);
+      if (!totalItems || totalItems < 1) {
+        this.setState({ isCartEmpty: true });
+      } else {
+        this.setState({ isCartEmpty: false });
+      }
+    } catch {
+      return;
+    }
+  };
+
   handleAdd = e => {
     const copy = { ...this.state.cartItem };
     copy[e.target.value] += 1;
     this.setState({ cartItem: copy });
+    this.setState({ isCartEmpty: false });
   };
 
   handleBuy = () => {
     const cart = JSON.stringify(this.state.cartItem);
     sessionStorage.setItem("cartData", cart);
+    this.props.props.history.replace(this.props.props.returnPath);
   };
+
+  componentDidMount() {
+    this.isCartEmpty();
+  }
 
   eventDays = getDays();
 
   displayMuscians = day => {
-    const foundMusicians = filterEvents(day);
+    const foundEvents = filterEvents(day.date);
     const musicianNames = [];
-    foundMusicians.map(musician => musicianNames.push(musician.title));
+    foundEvents.map(musician => musicianNames.push(musician.title));
     const uniqueMusicians = uniq(musicianNames);
+    if (sortEvents(foundEvents)[0]) {
+      const firstEvent = sortEvents(foundEvents)[0];
+      const time = ` ${("0" + (firstEvent.start.getHours() - 1)).slice(-2)}:${(
+        "0" + firstEvent.start.getMinutes()
+      ).slice(-2)}`;
 
-    const firstEvent = sortEvents(foundMusicians)[0];
+      return (
+        <div className="d-flex justify-content-start">
+          <div style={{ width: "5rem" }} className="mb-2">
+            <img
+              className="m-2"
+              src="images/icons/microphone.png"
+              width="18px"
+              alt="musicians"
+            />
+            {uniqueMusicians.map((musician, i) => (
+              <p key={i}>{musician}</p>
+            ))}
+          </div>
+          <div style={{ width: "5rem" }} className="ml-2">
+            <img
+              className="m-2"
+              src="images/icons/clock.png"
+              width="18px"
+              alt="time"
+            />
 
-    return (
-      <div className="d-flex justify-content-start">
-        <div style={{ width: "5rem" }} className="mb-2">
-          <img
-            className="m-2"
-            src="images/icons/microphone.png"
-            width="18px"
-            alt="musicians"
-          />
-          {uniqueMusicians.map((musician, i) => (
-            <p key={i}>{musician}</p>
-          ))}
+            <p>
+              Door opens an hour early at
+              {time}
+            </p>
+          </div>
+
+          <Button
+            color="info"
+            value={day.date.slice(0, 3)}
+            onClick={this.handleAdd}
+            disabled={false}
+          >
+            ✚ 1 to Cart
+          </Button>
         </div>
-        <div style={{ width: "5rem" }} className="ml-2">
-          <img
-            className="m-2"
-            src="images/icons/clock.png"
-            width="18px"
-            alt="time"
-          />
-
-          <p>
-            Door opens an hour early at
-            {` ${("0" + (firstEvent.start.getHours() - 1)).slice(-2)}:${(
-              "0" + firstEvent.start.getMinutes()
-            ).slice(-2)}`}
-          </p>
+      );
+    } else {
+      return (
+        <div>
+          No Events Found.
+          <Button
+            color="info"
+            value={day.date.slice(0, 3)}
+            onClick={this.handleAdd}
+            disabled={true}
+          >
+            ✚ 1 to Cart
+          </Button>
         </div>
-      </div>
-    );
+      );
+    }
   };
 
   render() {
@@ -133,28 +179,20 @@ export class TicketCard extends Component {
                 <CardTitle tag="h3">{`${day.price}`}SGD</CardTitle>
                 <hr />
 
-                {this.displayMuscians(day.date)}
-
-                <Button
-                  color="info"
-                  value={day.date.slice(0, 3)}
-                  onClick={this.handleAdd}
-                >
-                  ✚ 1 to Cart
-                </Button>
+                {this.displayMuscians(day)}
               </CardBody>
             </Card>
           );
         })}
 
-        <Link
+        <Button
           onClick={this.handleBuy}
           style={{ position: "absolute", bottom: "120px" }}
           className="btn btn-primary m-1"
-          to="/tickets/buy"
+          disabled={this.state.isCartEmpty}
         >
           Buy Tickets
-        </Link>
+        </Button>
       </React.Fragment>
     );
   }

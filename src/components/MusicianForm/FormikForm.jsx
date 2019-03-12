@@ -119,7 +119,7 @@ const MyForm = props => {
       <button type="submit" disabled={isSubmitting}>
         Submit
       </button>
-      <button onClick={props.handleDelete}>
+      <button type="button" onClick={props.handleDelete}>
         {props.match.params.id ? "Delete" : "Cancel"}
       </button>
     </form>
