@@ -2,16 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import Calendar from "react-big-calendar";
-
-import {
-  getEvents,
-  deleteEventByMusician,
-  deleteEvent,
-  saveEvent
-} from "../../services/eventsService";
 import Modal from "../common/Modal/Modal";
-import { getMusicianByName } from "../../services/musicianService";
-
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./EventCalendar.css";
@@ -21,13 +12,6 @@ Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 const DnDCalendar = withDragAndDrop(Calendar);
 
 class EventCalendar extends Component {
-  state = {
-    events: getEvents(),
-    showModal: { show: false },
-    modal: { title: "", id: "" },
-    selectedOption: { title: "", start: "", end: "" }
-  };
-
   firstMusician = musicians => {
     try {
       const firstMusician = musicians[0].name;
@@ -35,104 +19,33 @@ class EventCalendar extends Component {
     } catch (err) {
       this.setState({
         modal: {
-          title: "Please add musicians.",
+          title: "Please add musicians in Admin.",
           id: "Click the '+' button to add musician."
         }
       });
       this.setState({ show: true });
     }
   };
-
   componentDidMount() {
     const musicians = this.props.musicians;
     const firstMusician = this.firstMusician(musicians);
-    const selectedOption = this.state.selectedOption;
-    selectedOption.title = firstMusician;
-    this.setState({ selectedOption });
+    this.props.changeStateOption(firstMusician);
   }
-
-  showModal = event => {
-    const copy = { ...this.state.modal };
-    copy["title"] = event.title;
-    copy["id"] = event._id;
-    this.setState({ modal: copy });
-    this.setState({ show: true });
-  };
-
-  hideModal = () => {
-    this.setState({ show: false });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { title, start, end } = this.state.selectedOption;
-    const _id = Date.now().toString();
-    let newEvent = { _id, start, end, title };
-    this.setState({
-      events: [...this.state.events, newEvent]
-    });
-
-    saveEvent(newEvent);
-    this.hideModal();
-  };
-
-  handleChange = ({ currentTarget: input }) => {
-    const copy = { ...this.state.selectedOption };
-    copy["title"] = input.value;
-    this.setState({ selectedOption: copy });
-  };
-
-  handleDelete = ({ currentTarget: input }) => {
-    let events = [];
-
-    getMusicianByName(input.value)
-      ? (events = deleteEventByMusician(input.value))
-      : (events = deleteEvent(input.value));
-
-    this.setState({ events });
-    this.hideModal();
-  };
-
-  onEventResize = (type, { event, start, end }) => {
-    const copy = [...this.state.events];
-    const eventFound = copy.find(stateEvent => stateEvent._id === event._id);
-    eventFound.start = start;
-    eventFound.end = end;
-
-    this.setState({ events: copy });
-  };
-
-  onEventDrop = ({ event, start, end }) => {
-    const copy = [...this.state.events];
-
-    const eventFound = copy.find(stateEvent => stateEvent._id === event._id);
-
-    eventFound.start = start;
-    eventFound.end = end;
-
-    this.setState({ events: copy });
-  };
-
-  handleSelect = ({ start, end }) => {
-    const copy = { ...this.state.selectedOption };
-
-    if (!copy.title) {
-      this.setState({
-        modal: {
-          title: "Please add musicians.",
-          id: "Click the '+' button to add musician."
-        }
-      });
-      this.setState({ show: true });
-      return;
-    }
-    this.showModal({ title: "Select Musician" });
-    copy.start = start;
-    copy.end = end;
-    this.setState({ selectedOption: copy });
-  };
-
   render() {
+    const {
+      show,
+      showModal,
+      hideModal,
+      onEventDrop,
+      onEventResize,
+      handleSelect,
+      handleChange,
+      handleSubmit,
+      handleDelete,
+      musicians,
+      events,
+      modal
+    } = this.props;
     const minTime = new Date();
     minTime.setHours(8, 30, 0);
     return (
@@ -141,13 +54,13 @@ class EventCalendar extends Component {
           <h1 className="Calendar-title">Event Calendar</h1>
         </header>
         <Modal
-          show={this.state.show}
-          handleClose={this.hideModal}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          handleDelete={this.handleDelete}
-          musicians={this.props.musicians}
-          children={this.state.modal}
+          show={show}
+          handleClose={hideModal}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleDelete={handleDelete}
+          musicians={musicians}
+          children={modal}
         />
         <DnDCalendar
           selectable
@@ -159,12 +72,12 @@ class EventCalendar extends Component {
           min={minTime}
           scrollToTime={new Date("June 14, 2018")}
           defaultDate={new Date("June 14, 2019")}
-          onSelectEvent={this.showModal}
-          events={this.state.events}
-          onEventDrop={this.onEventDrop}
-          onEventResize={this.onEventResize}
+          onSelectEvent={showModal}
+          events={events}
+          onEventDrop={onEventDrop}
+          onEventResize={onEventResize}
           style={{ height: "100vh" }}
-          onSelectSlot={this.handleSelect}
+          onSelectSlot={handleSelect}
         />
       </div>
     );

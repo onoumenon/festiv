@@ -119,6 +119,19 @@ export function saveMusician(musician) {
       ...musician
     };
     musicians.push(newMusician);
-    return newMusician;
+    return musicians;
   }
+}
+
+export function filterMusicians(day, events) {
+  const foundEvents = events.filter(
+    event => event.start.toDateString() === day.date
+  );
+  const musicianNames = [];
+  foundEvents.map(event => musicianNames.push(event.title));
+  const uniqueMusicians = uniq(musicianNames);
+
+  const musiciansByDay = uniqueMusicians.map(name => getMusicianByName(name));
+
+  return musiciansByDay;
 }

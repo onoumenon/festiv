@@ -9,8 +9,9 @@ class MusicianForm extends Component {
       const id = this.props.match.params.id;
       const musician = getMusician(id);
       deleteMusician(id);
-      deleteEventByMusician(musician.name);
-      this.props.deleteStateData(id);
+      const remainingEvents = deleteEventByMusician(musician.name);
+
+      this.props.deleteStateData(id, remainingEvents);
       this.props.history.replace(this.props.returnPath);
     } else {
       this.props.history.replace(this.props.returnPath);

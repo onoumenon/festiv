@@ -1,13 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 import "./NavBar.css";
 
 export default class NavBar extends React.Component {
@@ -48,9 +41,9 @@ export default class NavBar extends React.Component {
             </NavItem>
           </Nav>
           <Nav>
-            <NavbarBrand className="butler navlogo" href="/">
+            <NavLink className="butler navlogo text-decoration-none" to="/">
               <h1> FESTIV</h1>
-            </NavbarBrand>
+            </NavLink>
           </Nav>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

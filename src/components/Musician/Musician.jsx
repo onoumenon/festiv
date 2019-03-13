@@ -4,9 +4,6 @@ import { UncontrolledPopover, PopoverHeader, PopoverBody } from "reactstrap";
 import "./Musician.css";
 
 export default class Musician extends React.Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
   render() {
     const { details, admin } = this.props;
 
