@@ -1,4 +1,5 @@
 import React from "react";
+import * as Yup from "yup";
 import {
   Jumbotron,
   Button,
@@ -15,24 +16,28 @@ import { getDates } from "./../../services/daysService";
 import "./hpj.css";
 
 class HPJumbotron extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      backdrop: false
-    };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  handleSubmit = e => {
-    e.preventDefault();
+  state = {
+    email: "",
+    backdrop: false
   };
 
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
-  }
+  };
+
+  handleChange = ({ currentTarget: input }) => {
+    const email = input.value;
+    this.setState({ email });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.email !== "") {
+      this.toggle();
+    }
+  };
 
   render() {
     const { headerInfo } = this.props;
@@ -72,8 +77,8 @@ class HPJumbotron extends React.Component {
               <h2>{`${dates[0].date}`}</h2>
             </div>
             <div className="lead d-flex hpj-btn justify-content-end">
-              <Form inline>
-                <FormGroup onSubmit={this.handleSubmit}>
+              <Form inline onSubmit={this.handleSubmit}>
+                <FormGroup>
                   <Label for="exampleEmail" hidden>
                     Email
                   </Label>
@@ -82,12 +87,12 @@ class HPJumbotron extends React.Component {
                     name="email"
                     id="exampleEmail"
                     placeholder="EMAIL"
+                    onChange={this.handleChange}
+                    value={this.state.email}
                     bsSize="lg"
                   />
                 </FormGroup>
-                <Button size="lg" onClick={this.toggle}>
-                  Newsletter
-                </Button>
+                <Button size="lg">Newsletter</Button>
               </Form>
             </div>
           </div>
