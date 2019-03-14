@@ -227,17 +227,17 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  path="/home"
+                  path="/"
                   render={props => (
                     <HomePage
                       musicians={this.state.musicians}
                       events={this.state.events}
                       {...props}
-                      returnPath="/home"
+                      returnPath="/"
                     />
                   )}
                 />
-                <Redirect from="/" to="/home" />
+                <Redirect from="/home" to="/" />
               </Switch>
             </main>
             <Footer />
