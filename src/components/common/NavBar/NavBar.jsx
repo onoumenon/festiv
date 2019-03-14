@@ -4,26 +4,28 @@ import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 import "./NavBar.css";
 
 export default class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
+  state = {
+    isOpen: false
+  };
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    //To Do
+  };
   render() {
     return (
       <nav>
         <Navbar color="light" light expand="md">
           <Nav className="ml-auto" navbar>
             <NavItem className="searchbar">
-              <form className="form-inline my-2 my-sm-0">
+              <form
+                className="form-inline my-2 my-sm-0"
+                onSubmit={this.handleSubmit}
+              >
                 <button
                   className="btn btn-outline-white shadow-none my-2 my-sm-0"
                   type="submit"
@@ -41,7 +43,10 @@ export default class NavBar extends React.Component {
             </NavItem>
           </Nav>
           <Nav>
-            <NavLink className="butler navlogo text-decoration-none" to="/">
+            <NavLink
+              className="butler navlogo text-decoration-none text-dark"
+              to="/"
+            >
               <h1> FESTIV</h1>
             </NavLink>
           </Nav>

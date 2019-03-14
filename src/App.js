@@ -32,15 +32,6 @@ class App extends Component {
     user: {}
   };
 
-  // componentDidMount() {
-  //   const id = this.props.match ? this.props.match.params.id : null;
-  //   const musicianFound = getMusician(id);
-  //   if (!musicianFound) return;
-  //   const newMusician = { ...musicianFound };
-  //   console.log(newMusician);
-  //   this.setState({ data: newMusician });
-  // }
-
   showModal = event => {
     const copy = { ...this.state.modal };
     copy["title"] = event.title;
